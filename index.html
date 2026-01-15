@@ -9,37 +9,37 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f4f8;
-            color: #333;
+            background-color: #121212; /* Dark Background */
+            color: #EAEAEA; /* Light Text */
         }
         header {
-            background: #6c63ff;
-            color: #fff;
+            background: #4A148C; /* Dark Purple */
+            color: #EAEAEA; /* Light Text */
             padding: 20px;
             text-align: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
         .container {
             width: 90%;
             max-width: 1200px;
             margin: 20px auto;
-            background: #fff;
+            background: #1E1E1E; /* Slightly Lighter Dark */
             padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
         h2 {
             text-align: center;
             margin-bottom: 30px;
-            color: #6c63ff;
+            color: #BA68C8; /* Light Purple */
         }
         .category {
             margin: 20px 0;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid #333;
             padding-bottom: 20px;
         }
         .category h3 {
-            color: #343a40;
+            color: #E1BEE7; /* Soft Light Purple */
             margin-bottom: 10px;
         }
         ul {
@@ -50,29 +50,34 @@
             padding: 10px;
             border-radius: 5px;
             margin: 5px 0;
-            background: #e9ecef;
+            background: #4A148C; /* Dark Purple List Item */
             transition: background 0.3s;
         }
         li:hover {
-            background: #dcdcdc;
+            background: #6A1B9A; /* Hover Effect */
             cursor: pointer;
         }
         a {
             text-decoration: none;
-            color: #333;
+            color: #EAEAEA; /* Light Text */
             font-weight: bold;
         }
         a:hover {
-            color: #6c63ff;
+            color: #FFEB3B; /* Bright Hover Text */
         }
         footer {
             text-align: center;
             padding: 15px;
-            background: #6c63ff;
-            color: #fff;
+            background: #4A148C; /* Dark Purple */
+            color: #EAEAEA; /* Light Text */
             position: relative;
             margin-top: 20px;
             border-radius: 0 0 8px 8px;
+        }
+        .dmca {
+            font-size: 12px;
+            color: #BDBDBD; /* Lighter Gray for DMCA */
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -116,6 +121,9 @@
 
 <footer>
     <p>&copy; 2026 Neko's Sources. All Rights Reserved.</p>
+    <div class="dmca">
+        <p>DMCA Disclaimer: All content on this site is for informational purposes only. We do not host any of the materials linked on this website.</p>
+    </div>
 </footer>
 
 </body>
