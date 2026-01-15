@@ -6,7 +6,6 @@
     <title>Neko's Sources</title>
 
     <style>
-        /* Disable text selection */
         * {
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -21,6 +20,21 @@
             background-color: #121212;
             color: #EAEAEA;
         }
+
+        .ip-warning {
+            background: #2A0A3D;
+            color: #FFCDD2;
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+            border-bottom: 2px solid #6A1B9A;
+        }
+
+        .ip-warning span {
+            color: #FFEB3B;
+            font-weight: bold;
+        }
+
         header {
             background: #4A148C;
             color: #EAEAEA;
@@ -28,6 +42,7 @@
             text-align: center;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
+
         .container {
             width: 90%;
             max-width: 1200px;
@@ -37,24 +52,29 @@
             border-radius: 8px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
+
         h2 {
             text-align: center;
             margin-bottom: 30px;
             color: #BA68C8;
         }
+
         .category {
             margin: 20px 0;
             border-bottom: 1px solid #333;
             padding-bottom: 20px;
         }
+
         .category h3 {
             color: #E1BEE7;
             margin-bottom: 10px;
         }
+
         ul {
             list-style-type: none;
             padding: 0;
         }
+
         li {
             padding: 10px;
             border-radius: 5px;
@@ -62,18 +82,22 @@
             background: #4A148C;
             transition: background 0.3s;
         }
+
         li:hover {
             background: #6A1B9A;
             cursor: pointer;
         }
+
         a {
             text-decoration: none;
             color: #EAEAEA;
             font-weight: bold;
         }
+
         a:hover {
             color: #FFEB3B;
         }
+
         footer {
             text-align: center;
             padding: 15px;
@@ -81,6 +105,7 @@
             color: #EAEAEA;
             margin-top: 20px;
         }
+
         .dmca {
             font-size: 12px;
             color: #BDBDBD;
@@ -92,15 +117,15 @@
         // Disable right click
         document.addEventListener("contextmenu", e => e.preventDefault());
 
-        // Disable copy, cut, paste
-        ["copy", "cut", "paste"].forEach(event =>
-            document.addEventListener(event, e => e.preventDefault())
+        // Disable copy / cut / paste
+        ["copy", "cut", "paste"].forEach(evt =>
+            document.addEventListener(evt, e => e.preventDefault())
         );
 
         // Disable dragging
         document.addEventListener("dragstart", e => e.preventDefault());
 
-        // Disable DevTools & view source shortcuts
+        // Disable DevTools shortcuts
         document.addEventListener("keydown", function (e) {
             if (
                 e.key === "F12" ||
@@ -111,10 +136,28 @@
                 e.preventDefault();
             }
         });
+
+        // Fetch & mask IP
+        fetch("https://api.ipify.org?format=json")
+            .then(res => res.json())
+            .then(data => {
+                const ip = data.ip;
+                const masked = ip.replace(/\d+$/, "xxx");
+                document.getElementById("user-ip").textContent = masked;
+            })
+            .catch(() => {
+                document.getElementById("user-ip").textContent = "Unavailable";
+            });
     </script>
 </head>
 
 <body>
+
+<div class="ip-warning">
+    ⚠️ Your IP address is visible to websites.  
+    Detected IP: <span id="user-ip">Loading...</span><br>
+    For privacy, consider using a trusted DNS (Cloudflare 1.1.1.1) or a VPN like Mullvad or ProtonVPN.
+</div>
 
 <header>
     <h1>Neko's Sources</h1>
