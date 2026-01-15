@@ -7,7 +7,8 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #121212; /* Dark background */
+            color: #e0e0e0; /* Light text */
             text-align: center;
             padding: 50px;
         }
@@ -15,12 +16,24 @@
             display: none;
             margin-top: 20px;
         }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #1f1f1f; /* Dark button */
+            color: #e0e0e0; /* Button text color */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #333; /* Button hover effect */
+        }
     </style>
 </head>
 <body>
 
 <h1>Neko Sources Secure Browser Check</h1>
-<p>Please ensure you are using a secure browser before accessing Neko Sources.</p>
+<p>Please ensure you are using a secure and up-to-date browser before accessing Neko Sources.</p>
 <button id="checkButton">Check Security</button>
 
 <div class="result" id="result"></div>
@@ -30,44 +43,27 @@
         const resultDiv = document.getElementById('result');
         resultDiv.style.display = 'none';
 
-        const protocol = window.location.protocol;
+        // Check for a secure and modern browser
+        const userAgent = navigator.userAgent;
+        const isModernBrowser = /Chrome|Firefox|Safari|Edge/i.test(userAgent) && !/OPR|Edg\/\d+/.test(userAgent);
 
-        if (protocol !== 'https:') {
-            resultDiv.innerHTML = "<p style='color: red;'>Warning: You are not using HTTPS!</p>";
-            resultDiv.style.display = 'block';
-            return;
-        }
-
-        // Check for Cloudflare headers
-        fetch(window.location.href).then(response => {
-            const securityHeader = response.headers.get('CF-RA-Wavelength');
-
-            if (securityHeader) {
-                resultDiv.innerHTML = "<p style='color: green;'>Your connection is secured by Cloudflare.</p>";
-                resultDiv.style.display = 'block';
-
-                // Redirect after 2 seconds
-                setTimeout(() => {
-                    window.location.href = "https://nekossources.netlify.app";  // Redirect to Neko Sources
-                }, 2000);
-            } else {
-                resultDiv.innerHTML = "<p style='color: red;'>Warning: Your connection is not secured by Cloudflare!</p>";
-                resultDiv.style.display = 'block';
-
-                // Redirect after 2 seconds
-                setTimeout(() => {
-                    window.location.href = "https://nekossources.netlify.app";  // Redirect to Neko Sources
-                }, 2000);
-            }
-        }).catch(error => {
-            resultDiv.innerHTML = "<p style='color: red;'>Error: Unable to check the security. Please try again.</p>";
+        if (isModernBrowser) {
+            resultDiv.innerHTML = "<p style='color: green;'>Your browser is secure and up-to-date.</p>";
             resultDiv.style.display = 'block';
 
             // Redirect after 2 seconds
             setTimeout(() => {
-                window.location.href = "https://nekossources.netlify.app";  // Redirect to Neko Sources
+                window.location.href = "https://nekossources.netlify.app/list";  // Redirect to Neko Sources List
             }, 2000);
-        });
+        } else {
+            resultDiv.innerHTML = "<p style='color: red;'>Warning: Your browser is outdated or not secure. Please update your browser.</p>";
+            resultDiv.style.display = 'block';
+
+            // Redirect after 2 seconds
+            setTimeout(() => {
+                window.location.href = "https://nekossources.netlify.app/list";  // Redirect to Neko Sources List
+            }, 2000);
+        }
     };
 </script>
 
