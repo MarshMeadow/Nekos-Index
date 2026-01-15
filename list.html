@@ -6,6 +6,14 @@
     <title>Neko's Sources</title>
 
     <style>
+        /* Disable text selection */
+        * {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -71,9 +79,7 @@
             padding: 15px;
             background: #4A148C;
             color: #EAEAEA;
-            position: relative;
             margin-top: 20px;
-            border-radius: 0 0 8px 8px;
         }
         .dmca {
             font-size: 12px;
@@ -84,22 +90,30 @@
 
     <script>
         // Disable right click
-        document.addEventListener("contextmenu", function (e) {
-            e.preventDefault();
-        });
+        document.addEventListener("contextmenu", e => e.preventDefault());
 
-        // Disable DevTools shortcuts
+        // Disable copy, cut, paste
+        ["copy", "cut", "paste"].forEach(event =>
+            document.addEventListener(event, e => e.preventDefault())
+        );
+
+        // Disable dragging
+        document.addEventListener("dragstart", e => e.preventDefault());
+
+        // Disable DevTools & view source shortcuts
         document.addEventListener("keydown", function (e) {
             if (
                 e.key === "F12" ||
                 (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) ||
-                (e.ctrlKey && e.key === "U")
+                (e.ctrlKey && e.key === "U") ||
+                (e.ctrlKey && e.key === "C")
             ) {
                 e.preventDefault();
             }
         });
     </script>
 </head>
+
 <body>
 
 <header>
@@ -141,7 +155,7 @@
 <footer>
     <p>&copy; 2026 Neko's Sources. All Rights Reserved.</p>
     <div class="dmca">
-        <p>DMCA Disclaimer: All content on this site is for informational purposes only. We do not host any of the materials linked on this website.</p>
+        <p>DMCA Disclaimer: All content is for informational purposes only. We do not host any materials.</p>
     </div>
 </footer>
 
