@@ -35,6 +35,15 @@
             font-weight: bold;
         }
 
+        .beta-notice {
+            background: #1F1F1F;
+            color: #FFD54F;
+            text-align: center;
+            padding: 12px;
+            font-size: 13px;
+            border-bottom: 1px solid #333;
+        }
+
         header {
             background: #4A148C;
             color: #EAEAEA;
@@ -114,18 +123,14 @@
     </style>
 
     <script>
-        // Disable right click
         document.addEventListener("contextmenu", e => e.preventDefault());
 
-        // Disable copy / cut / paste
         ["copy", "cut", "paste"].forEach(evt =>
             document.addEventListener(evt, e => e.preventDefault())
         );
 
-        // Disable dragging
         document.addEventListener("dragstart", e => e.preventDefault());
 
-        // Disable DevTools shortcuts
         document.addEventListener("keydown", function (e) {
             if (
                 e.key === "F12" ||
@@ -137,12 +142,10 @@
             }
         });
 
-        // Fetch & mask IP
         fetch("https://api.ipify.org?format=json")
             .then(res => res.json())
             .then(data => {
-                const ip = data.ip;
-                const masked = ip.replace(/\d+$/, "xxx");
+                const masked = data.ip.replace(/\d+$/, "xxx");
                 document.getElementById("user-ip").textContent = masked;
             })
             .catch(() => {
@@ -157,6 +160,11 @@
     ⚠️ Your IP address is visible to websites.  
     Detected IP: <span id="user-ip">Loading...</span><br>
     For privacy, consider using a trusted DNS (Cloudflare 1.1.1.1) or a VPN like Mullvad or ProtonVPN.
+</div>
+
+<div class="beta-notice">
+    🚧 This site is currently in <strong>beta / development</strong>.  
+    Some features may not work correctly, and not all sources are listed yet.
 </div>
 
 <header>
