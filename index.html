@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neko Sources Secure Browser Check</title>
+    <title>Neko’s Index – Secure Browser Check</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #121212; /* Dark background */
-            color: #e0e0e0; /* Light text */
+            background-color: #121212;
+            color: #e0e0e0;
             text-align: center;
             padding: 50px;
         }
@@ -19,21 +19,21 @@
         button {
             padding: 10px 20px;
             font-size: 16px;
-            background-color: #1f1f1f; /* Dark button */
-            color: #e0e0e0; /* Button text color */
+            background-color: #1f1f1f;
+            color: #e0e0e0;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
         button:hover {
-            background-color: #333; /* Button hover effect */
+            background-color: #333;
         }
     </style>
 </head>
 <body>
 
-<h1>Neko Sources Secure Browser Check</h1>
-<p>Please ensure you are using a secure and up-to-date browser before accessing Neko Sources.</p>
+<h1>Neko’s Index</h1>
+<p>Please ensure you are using a secure and up-to-date browser before accessing Neko’s Index.</p>
 <button id="checkButton">Check Security</button>
 
 <div class="result" id="result"></div>
@@ -43,7 +43,6 @@
         const resultDiv = document.getElementById('result');
         resultDiv.style.display = 'none';
 
-        // Check for a secure and modern browser
         const userAgent = navigator.userAgent;
         const isModernBrowser = /Chrome|Firefox|Safari|Edge/i.test(userAgent) && !/OPR|Edg\/\d+/.test(userAgent);
 
@@ -51,17 +50,15 @@
             resultDiv.innerHTML = "<p style='color: green;'>Your browser is secure and up-to-date.</p>";
             resultDiv.style.display = 'block';
 
-            // Redirect after 2 seconds
             setTimeout(() => {
-                window.location.href = "https://nekossources.netlify.app/list";  // Redirect to Neko Sources List
+                window.location.href = "https://nekossources.netlify.app/list";
             }, 2000);
         } else {
             resultDiv.innerHTML = "<p style='color: red;'>Warning: Your browser is outdated or not secure. Please update your browser.</p>";
             resultDiv.style.display = 'block';
 
-            // Redirect after 2 seconds
             setTimeout(() => {
-                window.location.href = "https://nekossources.netlify.app/list";  // Redirect to Neko Sources List
+                window.location.href = "https://nekossources.netlify.app/list";
             }, 2000);
         }
     };
