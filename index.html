@@ -53,12 +53,15 @@
 <body>
 
 <h1>Neko’s Index</h1>
-<p>Please ensure you are using a secure and up-to-date browser before accessing Neko’s Index.</p>
+<p id="introText">
+    Please ensure you are using a secure and up-to-date browser before accessing Neko’s Index.
+</p>
+
 <button id="checkButton">Check Security</button>
 
 <div class="result" id="result"></div>
 
-<div class="footer">
+<div class="footer" id="footer">
     <p>
         This page performs a basic browser compatibility and security check before granting access
         to Neko’s Index. It helps ensure visitors are using modern browsers capable of properly
@@ -68,6 +71,11 @@
 </div>
 
 <script>
+    /* Auto-redirect if already checked */
+    if (localStorage.getItem("nekoSecurityPassed") === "true") {
+        window.location.replace("https://nekos-index.netlify.app/list");
+    }
+
     /* Disable right click */
     document.addEventListener('contextmenu', e => e.preventDefault());
 
@@ -114,6 +122,9 @@
         }
 
         resultDiv.style.display = 'block';
+
+        /* Remember successful check */
+        localStorage.setItem("nekoSecurityPassed", "true");
 
         setTimeout(() => {
             window.location.href = "https://nekos-index.netlify.app/list";
