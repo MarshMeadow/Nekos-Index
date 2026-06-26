@@ -282,3 +282,287 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neko’s Index</title>
+
+    <style>
+        * {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #EAEAEA;
+        }
+
+        .ip-warning {
+            background: #2A0A3D;
+            color: #FFCDD2;
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+            border-bottom: 2px solid #6A1B9A;
+        }
+
+        .ip-warning span {
+            color: #FFEB3B;
+            font-weight: bold;
+        }
+
+        .beta-notice {
+            background: #1F1F1F;
+            color: #FFD54F;
+            text-align: center;
+            padding: 12px;
+            font-size: 13px;
+            border-bottom: 1px solid #333;
+        }
+
+        header {
+            background: #4A148C;
+            color: #EAEAEA;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            background: #1E1E1E;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #BA68C8;
+        }
+
+        .category {
+            margin: 20px 0;
+            border-bottom: 1px solid #333;
+            padding-bottom: 20px;
+        }
+
+        .category h3 {
+            color: #E1BEE7;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 5px 0;
+            background: #4A148C;
+            transition: background 0.3s;
+        }
+
+        li:hover {
+            background: #6A1B9A;
+            cursor: pointer;
+        }
+
+        a {
+            text-decoration: none;
+            color: #EAEAEA;
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #FFEB3B;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #4A148C;
+            color: #EAEAEA;
+            margin-top: 20px;
+        }
+
+        .other-indexes {
+            margin-top: 10px;
+            font-size: 13px;
+        }
+
+        .other-indexes ul {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .other-indexes li {
+            background: #6A1B9A;
+            padding: 6px 10px;
+            margin: 0;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .dmca {
+            font-size: 12px;
+            color: #BDBDBD;
+            margin-top: 15px;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("contextmenu", e => e.preventDefault());
+
+        ["copy", "cut", "paste"].forEach(evt =>
+            document.addEventListener(evt, e => e.preventDefault())
+        );
+
+        document.addEventListener("dragstart", e => e.preventDefault());
+
+        document.addEventListener("keydown", function (e) {
+            if (
+                e.key === "F12" ||
+                (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) ||
+                (e.ctrlKey && e.key === "U") ||
+                (e.ctrlKey && e.key === "C")
+            ) {
+                e.preventDefault();
+            }
+        });
+
+        fetch("https://api.ipify.org?format=json")
+            .then(res => res.json())
+            .then(data => {
+                const masked = data.ip.replace(/\d+$/, "xxx");
+                document.getElementById("user-ip").textContent = masked;
+            })
+            .catch(() => {
+                document.getElementById("user-ip").textContent = "Unavailable";
+            });
+    </script>
+</head>
+
+<body>
+
+<div class="ip-warning">
+    ⚠️ Your IP address is visible to websites.  
+    Detected IP: <span id="user-ip">Loading...</span><br>
+    For privacy, consider using a trusted DNS (Cloudflare 1.1.1.1) or a VPN like Mullvad or ProtonVPN.
+</div>
+
+<div class="beta-notice">
+    🚧 This site is currently in <strong>beta / development</strong>.  
+    Some features may not work correctly, and not all sources are listed yet.
+</div>
+
+<header>
+    <h1>Neko’s Index</h1>
+    <p>Your go-to resource for movies, shows, and anime</p>
+</header>
+
+<div class="container">
+    <h2>Categories</h2>
+
+    <div class="category">
+        <h3>Recommended VPNs & DNS Services</h3>
+        <ul>
+            <li><a href="https://adguard.com" target="_blank">AdGuard VPN / DNS - Free Trial (Mobile/PC)</a></li>
+            <li><a href="https://protonvpn.com" target="_blank">Proton VPN (Mobile/PC)</a></li>
+            <li><a href="https://www.cloudflare.com" target="_blank">Cloudflare DNS (1.1.1.1)</a></li>
+            <li><a href="https://www.zenz-solutions.de/personaldnsfilter-wp" target="_blank">Personal DNS Filter (Mobile)</a></li>
+            <li><a href="https://nordvpn.com" target="_blank">NordVPN (Mobile/PC)</a></li>
+        </ul>
+        <p style="font-size:13px; color:#BDBDBD;">
+            Using a trusted VPN or DNS can help protect your privacy and improve security while browsing streaming services.
+        </p>
+    </div>
+
+    <div class="category">
+        <h3>My Top Streaming Apps For Android</h3>
+        <ul>
+            <li><a href="https://github.com/recloudstream/cloudstream" target="_blank">Re-Cloudstream</a></li>
+            <li><a href="https://www.stremio.com" target="_blank">Stremio</a></li>
+            <li><a href="https://example.com" target="_blank">Source 3</a></li>
+        </ul>
+    </div>
+
+    <div class="category">
+        <h3>My Top Anime Apps For Android</h3>
+        <ul>
+            <li><a href="https://aniyomi.org" target="_blank">Aniyomi</a></li>
+            <li><a href="https://github.com/jerry08/Anikin" target="_blank">Anikin</a></li>
+            <li><a href="https://anilab.to" target="_blank">Anilab</a></li>
+        </ul>
+    </div>
+
+    <div class="category">
+        <h3>My Top Reading / Manga Apps For Android</h3>
+        <ul>
+            <li><a href="https://github.com/mihonapp/mihon" target="_blank">Mihon</a></li>
+            <li><a href="https://shosetsu.app" target="_blank">Shosetsu</a></li>
+            <li><a href="https://github.com/LNReader/lnreader" target="_blank">LNReader</a></li>
+        </ul>
+    </div>
+
+    <div class="category">
+        <h3>My Top Streaming Apps For PC</h3>
+        <ul>
+            <li><a href="https://www.stremio.com" target="_blank">Stremio</a></li>
+            <li><a href="https://example.com" target="_blank">Anime Source Y</a></li>
+            <li><a href="https://example.com" target="_blank">Anime Source Z</a></li>
+        </ul>
+    </div>
+
+    <div class="category">
+        <h3>Credits</h3>
+        <ul>
+            <li>
+                Website developed by <strong>Neko 404</strong><br>
+                <a href="https://marshmeadow.netlify.app" target="_blank">Website</a> ·
+                <a href="https://github.com/MarshMeadow" target="_blank">GitHub</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2026 Neko’s Index. All Rights Reserved.</p>
+
+    <div class="other-indexes">
+        <strong>Other Useful Indexes:</strong>
+        <ul>
+            <li><a href="https://theindex.moe" target="_blank">theindex.moe</a></li>
+            <li><a href="https://everythingmoe.com" target="_blank">everythingmoe</a></li>
+            <li><a href="https://wotaku.wiki" target="_blank">wotaku.wiki</a></li>
+            <li><a href="https://fmhy.net" target="_blank">fmhy</a></li>
+        </ul>
+    </div>
+
+    <div class="dmca">
+        <p>
+            Neko’s Index is an informational guide to websites, apps, and services for movies, shows, and anime.
+            We do not host or distribute copyrighted material, nor do we enable file sharing.
+            Information may change without notice. Some VPN links may be affiliate referrals.
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>
