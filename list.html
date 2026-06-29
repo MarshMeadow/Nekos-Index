@@ -363,6 +363,91 @@
         ::-webkit-scrollbar-thumb:hover {
             background: var(--accent-primary);
         }
+
+        .disclaimer-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .disclaimer-modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .disclaimer-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .disclaimer-content h2 {
+            margin: 0 0 15px 0;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .disclaimer-content h2::before {
+            content: '⚠️';
+        }
+
+        .disclaimer-content p {
+            margin: 0 0 20px 0;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .disclaimer-content ul {
+            margin: 0 0 20px 0;
+            padding-left: 20px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .disclaimer-content li {
+            margin-bottom: 8px;
+        }
+
+        .disclaimer-button {
+            background: var(--accent-gradient);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            width: 100%;
+        }
+
+        .disclaimer-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .disclaimer-button:active {
+            transform: translateY(0);
+        }
     </style>
 
     <script>
@@ -407,6 +492,26 @@
                     this.classList.toggle('collapsed');
                     content.classList.toggle('collapsed');
                 });
+            });
+
+            // Disclaimer Modal - Show only once
+            const disclaimerModal = document.getElementById('disclaimerModal');
+            const acceptButton = document.getElementById('acceptDisclaimer');
+            const disclaimerKey = 'nekoIndexDisclaimerAccepted';
+
+            // Check if user has already accepted the disclaimer
+            if (!localStorage.getItem(disclaimerKey)) {
+                // Show modal with a slight delay for better UX
+                setTimeout(() => {
+                    disclaimerModal.classList.add('show');
+                }, 500);
+            }
+
+            // Handle accept button click
+            acceptButton.addEventListener('click', function() {
+                disclaimerModal.classList.remove('show');
+                // Store that user has accepted the disclaimer
+                localStorage.setItem(disclaimerKey, 'true');
             });
         });
     </script>
@@ -820,13 +925,38 @@
     </div>
 
     <div class="dmca">
+        <h3>Disclaimer & DMCA</h3>
         <p>
-            Neko's Index is an informational guide to websites, apps, and services for movies, shows, and anime.
-            We do not host or distribute copyrighted material, nor do we enable file sharing.
+            <strong>Important Legal Notice:</strong> Neko's Index is an informational guide only. We do not host, distribute, or facilitate access to copyrighted material. All links provided are to third-party websites and services over which we have no control.
+        </p>
+        <p>
+            This website is for educational and informational purposes only. Users are responsible for ensuring their use of any linked services complies with applicable laws in their jurisdiction. We do not endorse piracy or copyright infringement.
+        </p>
+        <p>
+            <strong>DMCA Policy:</strong> If you believe your copyrighted work has been posted on a linked website, please contact that website directly. We are not responsible for the content of external sites.
+        </p>
+        <p style="margin-top: 15px; font-size: 12px; color: var(--text-muted);">
             Information may change without notice. Some VPN links may be affiliate referrals.
         </p>
     </div>
 </footer>
+
+<!-- Disclaimer Modal -->
+<div class="disclaimer-modal" id="disclaimerModal">
+    <div class="disclaimer-content">
+        <h2>Disclaimer</h2>
+        <p><strong>Please read before continuing:</strong></p>
+        <ul>
+            <li>Neko's Index is an informational guide only</li>
+            <li>We do not host or distribute copyrighted material</li>
+            <li>We are not responsible for third-party websites</li>
+            <li>Users must comply with their local laws</li>
+            <li>This site is for educational purposes only</li>
+        </ul>
+        <p>By clicking "I Understand", you acknowledge that you have read and agree to this disclaimer.</p>
+        <button class="disclaimer-button" id="acceptDisclaimer">I Understand</button>
+    </div>
+</div>
 
 </body>
 </html>
