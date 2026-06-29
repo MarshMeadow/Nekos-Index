@@ -937,8 +937,10 @@
                 const categoryName = header.querySelector('span').textContent;
                 const content = header.nextElementSibling;
 
-                // Apply saved state
-                if (savedCollapsedState[categoryName]) {
+                // Apply saved state - DEFAULT TO COLLAPSED if no saved state
+                const shouldCollapse = savedCollapsedState[categoryName] !== undefined ? savedCollapsedState[categoryName] : true;
+                
+                if (shouldCollapse) {
                     header.classList.add('collapsed');
                     content.classList.add('collapsed');
                 }
@@ -1659,6 +1661,529 @@
             <li><a href="https://easytag.github.io" target="_blank">EasyTag</a><span class="tag">Audio</span></li>
             <li><a href="https://www.mp3tag.de" target="_blank">Mp3tag</a><span class="tag">Audio</span></li>
             <li><a href="https://github.com/beetbox/beets" target="_blank">beets</a><span class="tag">CLI</span></li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-header">
+            <span>Free Anime Streaming Sites</span>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="category-content">
+        <ul>
+            <li><a href="https://anime.nexus" target="_blank">Anime Nexus</a><span class="tag">HD</span></li>
+            <li><a href="https://kaa.lt/" target="_blank">KickAssAnime</a><span class="tag">Popular</span></li>
+            <li><a href="https://www.miruro.to/" target="_blank">Miruro</a><span class="tag">Modern</span></li>
+            <li><a href="https://anime.uniquestream.net/" target="_blank">AnimeStream</a><span class="tag">Fast</span></li>
+            <li><a href="https://animeverse.to/" target="_blank">AnimeVerse</a><span class="tag">Multi</span></li>
+            <li><a href="https://reanime.to/home" target="_blank">Re:ANIME</a><span class="tag">Quality</span></li>
+            <li><a href="https://anizone.to/" target="_blank">AniZone</a><span class="tag">Dub</span></li>
+            <li><a href="https://allmanga.to/anime?tr=sub&cty=ALL" target="_blank">All Manga (Anime)</a><span class="tag">Integrated</span></li>
+            <li><a href="https://anibd.app/" target="_blank">Anibd</a><span class="tag">Database</span></li>
+            <li><a href="https://anihq.cc/home/" target="_blank">AniHQ</a><span class="tag">HQ</span></li>
+            <li><a href="https://animepahe.pw/" target="_blank">AnimePahe</a><span class="tag">Classic</span></li>
+            <li><a href="https://www.animotvslash.org/" target="_blank">Animotvslash</a><span class="tag">Slash</span></li>
+            <li><a href="https://beta.otaku-streamers.com/" target="_blank">Otaku-Streamers</a><span class="tag">Community</span></li>
+            <li><a href="https://www.wco.tv/" target="_blank">Watch Cartoon Online</a><span class="tag">Cartoons</span></li>
+            <li><a href="https://everythingmoe.com/s/animekai" target="_blank">AnimeKai</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/anikoto" target="_blank">Anikoto</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/AllAnime" target="_blank">AllAnime</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/anidbstream" target="_blank">AniDB Stream</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/animetsu" target="_blank">Animetsu</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/anitakuto" target="_blank">AniNeko</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/senshi" target="_blank">Senshi</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/AnimeOnsen" target="_blank">AnimeOnsen</a><span class="tag">Index</span></li>
+            <li><a href="https://www.bilibili.com" target="_blank">Bilibili</a><span class="tag">Chinese</span></li>
+            <li><a href="https://everythingmoe.com/s/anisnatch" target="_blank">AniSnatch</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/otakuu" target="_blank">AnimeX</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/123animes" target="_blank">aniwaves.ru</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/animekhor" target="_blank">AnimeKhor</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/AnimeXin" target="_blank">AnimeXin</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/donghuastream" target="_blank">DonghuaStream</a><span class="tag">Donghua</span></li>
+            <li><a href="https://everythingmoe.com/s/myanimelive" target="_blank">Myanime.live</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/LManime" target="_blank">LManime</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/animecube" target="_blank">Anime Cube</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/anoboye" target="_blank">Anoboye</a><span class="tag">Index</span></li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-header">
+            <span>Free Manga Reading Sites</span>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="category-content">
+        <ul>
+            <li><a href="https://kagane.to/" target="_blank">Kagane</a><span class="tag">Popular</span></li>
+            <li><a href="https://weebcentral.com/" target="_blank">Weeb Central</a><span class="tag">Fast</span></li>
+            <li><a href="https://atsu.moe/" target="_blank">Atsumaru</a><span class="tag">Modern</span></li>
+            <li><a href="https://mangafire.to/home" target="_blank">MangaFire</a><span class="tag">Quality</span></li>
+            <li><a href="https://mangadot.net/" target="_blank">MangaDotNet</a><span class="tag">Database</span></li>
+            <li><a href="https://mangakatana.com/" target="_blank">MangaKatana</a><span class="tag">Fast</span></li>
+            <li><a href="https://mangaball.net/" target="_blank">MangaBall</a><span class="tag">Simple</span></li>
+            <li><a href="https://onisaga.com/home" target="_blank">OniSaga</a><span class="tag">Modern</span></li>
+            <li><a href="https://comix.to/" target="_blank">Comix</a><span class="tag">Comics</span></li>
+            <li><a href="https://mangataro.org/home" target="_blank">MangaTaro</a><span class="tag">Korean</span></li>
+            <li><a href="https://mangak.io/home" target="_blank">MangaK</a><span class="tag">Fast</span></li>
+            <li><a href="https://mangahub.io/" target="_blank">MangaHub</a><span class="tag">Hub</span></li>
+            <li><a href="https://mangafox.la/" target="_blank">Manga Fox</a><span class="tag">Classic</span></li>
+            <li><a href="https://everythingmoe.com/s/mangago" target="_blank">Mangago</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/allmanga" target="_blank">MKissa Manga</a><span class="tag">Index</span></li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-header">
+            <span>Novel Reading Sites</span>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="category-content">
+        <ul>
+            <li><a href="https://lightnovelworld.org" target="_blank">LightNovelWorld</a><span class="tag">Popular</span></li>
+            <li><a href="https://novelarchive.net" target="_blank">NovelArchive</a><span class="tag">Archive</span></li>
+            <li><a href="https://novelbuddy.com" target="_blank">NovelBuddy</a><span class="tag">Buddy</span></li>
+            <li><a href="https://novelfire.net" target="_blank">NovelFire</a><span class="tag">Fast</span></li>
+            <li><a href="https://annas-archive.org" target="_blank">Anna's Archive</a><span class="tag">Comprehensive</span></li>
+            <li><a href="https://everythingmoe.com/s/jnovelclub" target="_blank">J-Novel Club</a><span class="tag">Official</span></li>
+            <li><a href="https://everythingmoe.com/s/noveldex" target="_blank">NovelDex</a><span class="tag">Database</span></li>
+            <li><a href="https://everythingmoe.com/s/wuxiap" target="_blank">Wuxia Box</a><span class="tag">Wuxia</span></li>
+            <li><a href="https://everythingmoe.com/s/wuxiaclick" target="_blank">WuxiaClick</a><span class="tag">Wuxia</span></li>
+            <li><a href="https://everythingmoe.com/s/lnori" target="_blank">Lnori</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/novelsonline" target="_blank">NovelsOnline</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/innread" target="_blank">FreeWebNovel</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/ranobestop" target="_blank">Ranobes</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/cyrisia" target="_blank">Cyrisia</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/bakatsuki" target="_blank">Baka-Tsuki</a><span class="tag">Classic</span></li>
+            <li><a href="https://everythingmoe.com/s/novelcool" target="_blank">NovelCool</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/lncrawler" target="_blank">LnCrawler</a><span class="tag">Tool</span></li>
+            <li><a href="https://everythingmoe.com/s/novelusb" target="_blank">Novel Bin</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/novelhall" target="_blank">Novelhall</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/mvlempyr" target="_blank">MVLEMPYR</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/fucknovelpia" target="_blank">FUCKNOVELPIA</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/elscioneserver" target="_blank">server.elscione</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/foxaholic" target="_blank">Foxaholic</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/wtrlab" target="_blank">WTR-LAB</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/kurehaone" target="_blank">Kureha One forum</a><span class="tag">Forum</span></li>
+            <li><a href="https://everythingmoe.com/s/jnovels" target="_blank">jnovels</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/armaelllib" target="_blank">Armaell's Library</a><span class="tag">Index</span></li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-header">
+            <span>Asian Drama Streaming Sites</span>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="category-content">
+        <ul>
+            <li><a href="https://kisskh.com" target="_blank">Kisskh</a><span class="tag">Popular</span></li>
+            <li><a href="https://goplay.com" target="_blank">GoPlay</a><span class="tag">Official</span></li>
+            <li><a href="https://viki.com" target="_blank">Rakuten Viki</a><span class="tag">Premium</span></li>
+            <li><a href="https://www.iq.com" target="_blank">iQIYI</a><span class="tag">Chinese</span></li>
+            <li><a href="https://asianc.tv" target="_blank">Asianc TV</a><span class="tag">Asian</span></li>
+            <li><a href="https://wetv.vip" target="_blank">WeTV</a><span class="tag">Chinese</span></li>
+            <li><a href="https://kdramaweb.com" target="_blank">Kdramaweb</a><span class="tag">Korean</span></li>
+            <li><a href="https://dramanicee.cl" target="_blank">Dramanicee.cl</a><span class="tag">Classic</span></li>
+            <li><a href="https://lovo.tv" target="_blank">Lovo</a><span class="tag">Index</span></li>
+            <li><a href="https://tokuzilla.com" target="_blank">Tokuzilla</a><span class="tag">Tokusatsu</span></li>
+            <li><a href="https://zokaj.com" target="_blank">Zokaj</a><span class="tag">Index</span></li>
+            <li><a href="https://toku555.com" target="_blank">Toku555</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/kisskhweb" target="_blank">kisskhweb.com</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/onlykdrama" target="_blank">OnlyKDrama</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/dramaday" target="_blank">Dramaday</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/mkvdramame" target="_blank">MkvDrama.net</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/myasiantv" target="_blank">Myasiantv</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/asiaflix" target="_blank">Asiaflix</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/kissoppa" target="_blank">KissOppa</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/asianview" target="_blank">Kisskh.club</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/kissasiantv" target="_blank">Kissasiantv</a><span class="tag">Index</span></li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-header">
+            <span>Additional Anime & Manga Apps</span>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="category-content">
+        <ul>
+            <li><a href="https://everythingmoe.com/s/seanime" target="_blank">Seanime</a><span class="tag">Anime</span></li>
+            <li><a href="https://everythingmoe.com/s/mangayomi" target="_blank">Mangayomi</a><span class="tag">Manga</span></li>
+            <li><a href="https://everythingmoe.com/s/anymex" target="_blank">AnymeX</a><span class="tag">Anime</span></li>
+            <li><a href="https://everythingmoe.com/s/cloudstream" target="_blank">CloudStream</a><span class="tag">Streaming</span></li>
+            <li><a href="https://everythingmoe.com/s/miru" target="_blank">Hayase / Miru</a><span class="tag">Anime</span></li>
+            <li><a href="https://everythingmoe.com/s/quicknovel" target="_blank">QuickNovel</a><span class="tag">Novels</span></li>
+            <li><a href="https://everythingmoe.com/s/yokai" target="_blank">Yokai</a><span class="tag">Manga</span></li>
+            <li><a href="https://everythingmoe.com/s/manatan" target="_blank">Manatan</a><span class="tag">Manga</span></li>
+            <li><a href="https://everythingmoe.com/s/tsundoku" target="_blank">Tsundoku</a><span class="tag">Novels</span></li>
+            <li><a href="https://everythingmoe.com/s/mirujs" target="_blank">Miru (JS)</a><span class="tag">Anime</span></li>
+            <li><a href="https://everythingmoe.com/s/tachidesk" target="_blank">Suwayomi / Tachidesk</a><span class="tag">Server</span></li>
+            <li><a href="https://everythingmoe.com/s/houdoku" target="_blank">Houdoku</a><span class="tag">Manga</span></li>
+            <li><a href="https://everythingmoe.com/s/fmd2" target="_blank">FMD2</a><span class="tag">Manga</span></li>
+            <li><a href="https://everythingmoe.com/s/hakuneko" target="_blank">Hakuneko</a><span class="tag">Anime</span></li>
+            <li><a href="https://everythingmoe.com/s/shiru" target="_blank">Shiru</a><span class="tag">Manga</span></li>
+            <li><a href="https://everythingmoe.com/s/lncrawlerapp" target="_blank">Lightnovel Crawler</a><span class="tag">Novels</span></li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-header">
+            <span>Torrent & Download Sites</span>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="category-content">
+        <ul>
+            <li><a href="https://nyaa.si" target="_blank">Nyaa</a><span class="tag">Anime</span></li>
+            <li><a href="https://animetosho.org" target="_blank">AnimeTosho</a><span class="tag">Anime</span></li>
+            <li><a href="https://tsukihime.moe" target="_blank">TsukiHime</a><span class="tag">Anime</span></li>
+            <li><a href="https://subsplease.org" target="_blank">SubsPlease</a><span class="tag">Anime</span></li>
+            <li><a href="https://www.tokyotosho.info" target="_blank">Tokyo Toshokan</a><span class="tag">Anime</span></li>
+            <li><a href="https://www.cdjapan.co.jp" target="_blank">CDJapan</a><span class="tag">Official</span></li>
+            <li><a href="https://releases.moe" target="_blank">SeaDex</a><span class="tag">Database</span></li>
+            <li><a href="https://nekobt.com" target="_blank">nekoBT</a><span class="tag">Anime</span></li>
+            <li><a href="https://anirena.com" target="_blank">AniRena</a><span class="tag">Anime</span></li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-header">
+            <span>Privacy & Security Tools</span>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="category-content">
+        <ul>
+            <li><a href="https://github.com/gorhill/uBlock" target="_blank">uBlock Origin</a><span class="tag">Ad-block</span></li>
+            <li><a href="https://everythingmoe.com/s/vpnservice" target="_blank">VPN Service</a><span class="tag">Info</span></li>
+            <li><a href="https://airvpn.org" target="_blank">AirVPN</a><span class="tag">Privacy</span></li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-header">
+            <span>Tracking & Sync Tools</span>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="category-content">
+        <ul>
+            <li><a href="https://github.com/Karmesinrotz/MAL-sync" target="_blank">MAL-sync</a><span class="tag">Browser</span></li>
+            <li><a href="https://saucenao.com" target="_blank">Saucenao</a><span class="tag">Image</span></li>
+            <li><a href="https://trace.moe" target="_blank">Trace.moe</a><span class="tag">Anime</span></li>
+            <li><a href="https://cubari.moe" target="_blank">Cubari</a><span class="tag">Manga</span></li>
+            <li><a href="https://due.moe" target="_blank">due.moe</a><span class="tag">Tool</span></li>
+            <li><a href="https://github.com/taiga-app/taiga" target="_blank">Taiga</a><span class="tag">Desktop</span></li>
+            <li><a href="https://github.com/z411/trackma" target="_blank">Trackma</a><span class="tag">Desktop</span></li>
+            <li><a href="https://everythingmoe.com/s/shoko" target="_blank">Shoko</a><span class="tag">Manager</span></li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-header">
+            <span>Additional Database Sites</span>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="category-content">
+        <ul>
+            <li><a href="https://mangabaka.com" target="_blank">MangaBaka</a><span class="tag">Manga</span></li>
+            <li><a href="https://comick.app" target="_blank">ComicK</a><span class="tag">Comics</span></li>
+            <li><a href="https://www.mangaupdates.com" target="_blank">Baka-Updates</a><span class="tag">Manga</span></li>
+            <li><a href="https://anidb.net" target="_blank">AniDB</a><span class="tag">Anime</span></li>
+            <li><a href="https://kuroiru.com" target="_blank">Kuroiru</a><span class="tag">Anime</span></li>
+            <li><a href="https://myfigurecollection.net" target="_blank">MyFigureCollection</a><span class="tag">Figures</span></li>
+            <li><a href="https://vndb.org" target="_blank">Visual Novel DB</a><span class="tag">VN</span></li>
+            <li><a href="https://vnclub.net" target="_blank">VN Club</a><span class="tag">VN</span></li>
+            <li><a href="https://novilist.com" target="_blank">NoviList</a><span class="tag">Novels</span></li>
+            <li><a href="https://novelupdates.com" target="_blank">NovelUpdates</a><span class="tag">Novels</span></li>
+            <li><a href="https://ranobelib.com" target="_blank">RanobeDB</a><span class="tag">Novels</span></li>
+            <li><a href="https://vocadb.net" target="_blank">VocaDB</a><span class="tag">Music</span></li>
+            <li><a href="https://mydramalist.com" target="_blank">MyDramaList</a><span class="tag">Drama</span></li>
+            <li><a href="https://kenmei.com" target="_blank">Kenmei</a><span class="tag">Anime</span></li>
+            <li><a href="https://vgmdb.net" target="_blank">VGMdb</a><span class="tag">Music</span></li>
+            <li><a href="https://anisoncharts.com" target="_blank">Anison Charts</a><span class="tag">Music</span></li>
+            <li><a href="https://mywaifulist.com" target="_blank">MyWaifuList</a><span class="tag">Anime</span></li>
+            <li><a href="https://everythingmoe.com/s/mudae" target="_blank">Mudae</a><span class="tag">Bot</span></li>
+            <li><a href="https://everythingmoe.com/s/konsumr" target="_blank">konsumr</a><span class="tag">Tool</span></li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-header">
+            <span>Additional Streaming Sites</span>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="category-content">
+        <ul>
+            <li><a href="https://cineby.com" target="_blank">Cineby</a><span class="tag">Movies</span></li>
+            <li><a href="https://everythingmoe.com/s/shuttletv" target="_blank">ShuttleTV</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/hydrahd" target="_blank">HydraHD</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/neputo" target="_blank">NEPU Stream</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/m4uhd" target="_blank">M4uHD</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/cinemaos" target="_blank">Cinemaos</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/rivestream" target="_blank">Rive</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/watchroo" target="_blank">Watchroo</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/vidboxto" target="_blank">Vidbox</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/hexawatch" target="_blank">Hexa Watch</a><span class="tag">Index</span></li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-header">
+            <span>Music & OST Sites</span>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="category-content">
+        <ul>
+            <li><a href="https://animesonglyrics.com" target="_blank">Anime Song Lyrics</a><span class="tag">Lyrics</span></li>
+            <li><a href="https://lyrical-nonsense.com" target="_blank">Lyrical Nonsense</a><span class="tag">Lyrics</span></li>
+            <li><a href="https://animethemes.moe" target="_blank">AnimeThemes</a><span class="tag">Themes</span></li>
+            <li><a href="https://anison.info" target="_blank">Anime Song Online</a><span class="tag">Database</span></li>
+            <li><a href="https://anisongdb.com" target="_blank">AnisongDB</a><span class="tag">Database</span></li>
+            <li><a href="https://listen.moe" target="_blank">listen.moe</a><span class="tag">Radio</span></li>
+            <li><a href="https://r-a-d.io" target="_blank">R/a/dio</a><span class="tag">Radio</span></li>
+            <li><a href="https://sittingonclouds.net" target="_blank">Sitting on Clouds</a><span class="tag">Radio</span></li>
+            <li><a href="https://everythingmoe.com/s/allanimusic" target="_blank">MKissa Music</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/okamimiost" target="_blank">OkamimiOST</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/doujinstyle" target="_blank">DoujinStyle</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/tmlc" target="_blank">TLMC</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/touhoukuukunen" target="_blank">Touhou Player</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/mikudb" target="_blank">MikuDB</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/khinsider" target="_blank">KHInsider</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/sonixgvn" target="_blank">Sonix's OST</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/osanime" target="_blank">Osanime</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/musicdex" target="_blank">Musicdex</a><span class="tag">Index</span></li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-header">
+            <span>Calendar & Schedule Tools</span>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="category-content">
+        <ul>
+            <li><a href="https://livechart.me" target="_blank">Livechart</a><span class="tag">Schedule</span></li>
+            <li><a href="https://anichart.net" target="_blank">Anichart</a><span class="tag">Schedule</span></li>
+            <li><a href="https://cal.syoboi.jp" target="_blank">Syoboi</a><span class="tag">Schedule</span></li>
+            <li><a href="https://animeschedule.net" target="_blank">AnimeSchedule</a><span class="tag">Schedule</span></li>
+            <li><a href="https://everythingmoe.com/s/upcomingdubanime" target="_blank">Upcoming Dubbed Anime</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/teamupdubschedule" target="_blank">Dubs Release Calendar</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/otakucalendar" target="_blank">Otaku Calendar</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/lnrelease" target="_blank">LNRelease</a><span class="tag">Index</span></li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-header">
+            <span>Quiz & Game Tools</span>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="category-content">
+        <ul>
+            <li><a href="https://everythingmoe.com/s/AnimeMusicQuiz" target="_blank">AnimeMusicQuiz</a><span class="tag">Quiz</span></li>
+            <li><a href="https://everythingmoe.com/s/aniguessr" target="_blank">AniGuessr</a><span class="tag">Quiz</span></li>
+            <li><a href="https://everythingmoe.com/s/chiakiquiz" target="_blank">Chiaki Quiz</a><span class="tag">Quiz</span></li>
+            <li><a href="https://everythingmoe.com/s/aniconnections" target="_blank">AniConnections</a><span class="tag">Quiz</span></li>
+            <li><a href="https://everythingmoe.com/s/baranimes" target="_blank">Baranimes</a><span class="tag">Quiz</span></li>
+            <li><a href="https://everythingmoe.com/s/erogemusicquiz" target="_blank">ErogeMusicQuiz</a><span class="tag">Quiz</span></li>
+            <li><a href="https://everythingmoe.com/s/guesstheopening" target="_blank">Guess The Anime Opening</a><span class="tag">Quiz</span></li>
+            <li><a href="https://everythingmoe.com/s/animeopeningquiz" target="_blank">Anime Opening Quiz</a><span class="tag">Quiz</span></li>
+            <li><a href="https://everythingmoe.com/s/animesongsorg" target="_blank">AnimeSongs.org</a><span class="tag">Quiz</span></li>
+            <li><a href="https://everythingmoe.com/s/animerdle" target="_blank">Animerdle</a><span class="tag">Game</span></li>
+            <li><a href="https://everythingmoe.com/s/animetrivia" target="_blank">AnimeTrivia</a><span class="tag">Quiz</span></li>
+            <li><a href="https://everythingmoe.com/s/animeguess" target="_blank">AnimeGuess.moe</a><span class="tag">Quiz</span></li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-header">
+            <span>Stats & Info Tools</span>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="category-content">
+        <ul>
+            <li><a href="https://everythingmoe.com/s/animestats" target="_blank">Anime Stats</a><span class="tag">Stats</span></li>
+            <li><a href="https://everythingmoe.com/s/animekarmalist" target="_blank">AnimeKarmaList</a><span class="tag">Stats</span></li>
+            <li><a href="https://everythingmoe.com/s/anitrendz" target="_blank">Anime Trending</a><span class="tag">Trending</span></li>
+            <li><a href="https://everythingmoe.com/s/animecorner" target="_blank">AnimeCorner</a><span class="tag">News</span></li>
+            <li><a href="https://everythingmoe.com/s/mangatumeo" target="_blank">Manga Plus Top 40</a><span class="tag">Stats</span></li>
+            <li><a href="https://everythingmoe.com/s/mangacodex" target="_blank">MangaCodex</a><span class="tag">Stats</span></li>
+            <li><a href="https://everythingmoe.com/s/jajanken" target="_blank">Jajanken</a><span class="tag">Game</span></li>
+            <li><a href="https://everythingmoe.com/s/japanesewithanimewiki" target="_blank">Japanese with Anime</a><span class="tag">Learning</span></li>
+            <li><a href="https://everythingmoe.com/s/wotaku" target="_blank">Wotaku</a><span class="tag">Wiki</span></li>
+            <li><a href="https://everythingmoe.com/s/anifillerlist" target="_blank">AnimeFillerList</a><span class="tag">Guide</span></li>
+            <li><a href="https://everythingmoe.com/s/animefillerguide" target="_blank">AnimeFillerGuide</a><span class="tag">Guide</span></li>
+            <li><a href="https://everythingmoe.com/s/animechrono" target="_blank">AnimeChrono</a><span class="tag">Tool</span></li>
+            <li><a href="https://everythingmoe.com/s/miyomi" target="_blank">Miyomi</a><span class="tag">Tool</span></li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-header">
+            <span>Image & Art Resources</span>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="category-content">
+        <ul>
+            <li><a href="https://everythingmoe.com/s/hentaitagsearch" target="_blank">Tag Search Blogs</a><span class="tag">Search</span></li>
+            <li><a href="https://touhouwiki.net" target="_blank">Touhou Wiki</a><span class="tag">Wiki</span></li>
+            <li><a href="https://recommendmeanime.com" target="_blank">RecommendMeAnime</a><span class="tag">Recommend</span></li>
+            <li><a href="https://safebooru.org" target="_blank">Safebooru</a><span class="tag">Images</span></li>
+            <li><a href="https://sakugabooru.com" target="_blank">sakugabooru</a><span class="tag">Animation</span></li>
+            <li><a href="https://everythingmoe.com/s/pixivpics" target="_blank">Pixiv Viewer</a><span class="tag">Images</span></li>
+            <li><a href="https://pixiv.net" target="_blank">Pixiv</a><span class="tag">Art</span></li>
+            <li><a href="https://artstreet.io" target="_blank">ARTstreet</a><span class="tag">Art</span></li>
+            <li><a href="https://everythingmoe.com/s/gsbooru" target="_blank">Gsbooru</a><span class="tag">Images</span></li>
+            <li><a href="https://everythingmoe.com/s/setteidreams" target="_blank">Settei Dreams</a><span class="tag">Art</span></li>
+            <li><a href="https://everythingmoe.com/s/booruwf" target="_blank">booruwf</a><span class="tag">Images</span></li>
+            <li><a href="https://everythingmoe.com/s/pawchive" target="_blank">Pawchive</a><span class="tag">Images</span></li>
+            <li><a href="https://kemono.party" target="_blank">Kemono</a><span class="tag">Archive</span></li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-header">
+            <span>VTuber Tools</span>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="category-content">
+        <ul>
+            <li><a href="https://holodex.net" target="_blank">Holodex</a><span class="tag">Database</span></li>
+            <li><a href="https://everythingmoe.com/s/amatsukaze" target="_blank">Amatsukaze</a><span class="tag">Tool</span></li>
+            <li><a href="https://everythingmoe.com/s/vtubie" target="_blank">vTubie</a><span class="tag">Tool</span></li>
+            <li><a href="https://everythingmoe.com/s/hololist" target="_blank">Hololist</a><span class="tag">List</span></li>
+            <li><a href="https://everythingmoe.com/s/ragtagmoe" target="_blank">Ragtag Archive</a><span class="tag">Archive</span></li>
+            <li><a href="https://everythingmoe.com/s/patchwork" target="_blank">Patchwork Archive</a><span class="tag">Archive</span></li>
+            <li><a href="https://everythingmoe.com/s/asmrarchive" target="_blank">ASMR Archive</a><span class="tag">Archive</span></li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-header">
+            <span>Gacha Tools</span>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="category-content">
+        <ul>
+            <li><a href="https://prydwengg.com" target="_blank">Prydwen.gg</a><span class="tag">Guides</span></li>
+            <li><a href="https://game8.co" target="_blank">Game8</a><span class="tag">Guides</span></li>
+            <li><a href="https://everythingmoe.com/s/gacharevenue" target="_blank">Gacha Revenue Tracker</a><span class="tag">Stats</span></li>
+            <li><a href="https://everythingmoe.com/s/seelie" target="_blank">SEELIE.me</a><span class="tag">Tool</span></li>
+            <li><a href="https://everythingmoe.com/s/wishsimulator" target="_blank">Wish Simulator</a><span class="tag">Simulator</span></li>
+            <li><a href="https://everythingmoe.com/s/wuwatracker" target="_blank">WuWa Tracker</a><span class="tag">Tracker</span></li>
+            <li><a href="https://everythingmoe.com/s/stardb" target="_blank">stardb.gg</a><span class="tag">Database</span></li>
+            <li><a href="https://everythingmoe.com/s/genshingg" target="_blank">Genshin.gg</a><span class="tag">Guides</span></li>
+            <li><a href="https://everythingmoe.com/s/encoremoe" target="_blank">encore.moe</a><span class="tag">Tool</span></li>
+            <li><a href="https://everythingmoe.com/s/gachareddit" target="_blank">r/gachagaming</a><span class="tag">Reddit</span></li>
+            <li><a href="https://everythingmoe.com/s/ennead" target="_blank">torikushiii</a><span class="tag">Index</span></li>
+            <li><a href="https://everythingmoe.com/s/gongeous" target="_blank">gongeo.us</a><span class="tag">Index</span></li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-header">
+            <span>Game Launchers</span>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="category-content">
+        <ul>
+            <li><a href="https://everythingmoe.com/s/twintaillauncher" target="_blank">Twintail Launcher</a><span class="tag">Genshin</span></li>
+            <li><a href="https://everythingmoe.com/s/collapselauncher" target="_blank">Collapse Launcher</a><span class="tag">Genshin</span></li>
+            <li><a href="https://everythingmoe.com/s/launchermoe" target="_blank">Launcher.moe</a><span class="tag">Genshin</span></li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-header">
+            <span>Cosplay Resources</span>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="category-content">
+        <ul>
+            <li><a href="https://ezcosplay.com" target="_blank">EZ Cosplay</a><span class="tag">Store</span></li>
+            <li><a href="https://miccostumes.com" target="_blank">MicCostumes</a><span class="tag">Store</span></li>
+            <li><a href="https://everythingmoe.com/s/moeflavor" target="_blank">MoeFlavor</a><span class="tag">Store</span></li>
+            <li><a href="https://everythingmoe.com/s/uwowocosplay" target="_blank">Uwowo Cosplay</a><span class="tag">Store</span></li>
+            <li><a href="https://everythingmoe.com/s/rolecosplay" target="_blank">Role Cosplay</a><span class="tag">Store</span></li>
+            <li><a href="https://everythingmoe.com/s/dokidokicos" target="_blank">DokiDoki Cosplay</a><span class="tag">Store</span></li>
+            <li><a href="https://everythingmoe.com/s/cosrea" target="_blank">CosRea</a><span class="tag">Store</span></li>
+            <li><a href="https://everythingmoe.com/s/meowcos" target="_blank">Meowcos</a><span class="tag">Store</span></li>
+            <li><a href="https://everythingmoe.com/s/simcosplay" target="_blank">Sim Cosplay</a><span class="tag">Store</span></li>
+            <li><a href="https://everythingmoe.com/s/procosplay" target="_blank">Pro Cosplay</a><span class="tag">Store</span></li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-header">
+            <span>AMV Resources</span>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="category-content">
+        <ul>
+            <li><a href="https://animemusicvideos.org" target="_blank">AnimeMusicVideos.org</a><span class="tag">AMV</span></li>
+            <li><a href="https://everythingmoe.com/s/akross" target="_blank">AKROSS</a><span class="tag">AMV</span></li>
+            <li><a href="https://everythingmoe.com/s/amvnews" target="_blank">AMVnews</a><span class="tag">AMV</span></li>
+            <li><a href="https://everythingmoe.com/s/amvhell" target="_blank">AMV Hell</a><span class="tag">AMV</span></li>
+            <li><a href="https://everythingmoe.com/s/animeclips" target="_blank">animeclips.online</a><span class="tag">Clips</span></li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-header">
+            <span>Forums & Communities</span>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="category-content">
+        <ul>
+            <li><a href="https://reddit.com" target="_blank">Reddit</a><span class="tag">Community</span></li>
+            <li><a href="https://myanimelist.net/forum" target="_blank">MyAnimeList Forum</a><span class="tag">Forum</span></li>
+            <li><a href="https://anilist.co/forum" target="_blank">Anilist Forum</a><span class="tag">Forum</span></li>
+            <li><a href="https://anidb.net/forum" target="_blank">AniDB Forum</a><span class="tag">Forum</span></li>
+            <li><a href="https://anime-sharing.com" target="_blank">Anime-Sharing</a><span class="tag">Forum</span></li>
+            <li><a href="https://fuwanovel.net" target="_blank">Fuwanovel Forum</a><span class="tag">Forum</span></li>
+            <li><a href="https://animeforums.net" target="_blank">Animeforums</a><span class="tag">Forum</span></li>
+            <li><a href="https://everythingmoe.com/s/discussanime" target="_blank">Chuunime</a><span class="tag">Forum</span></li>
+            <li><a href="https://everythingmoe.com/s/annforum" target="_blank">ANN Forum</a><span class="tag">Forum</span></li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-header">
+            <span>Additional Resources</span>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="category-content">
+        <ul>
+            <li><a href="https://everythingmoe.com/s/tokyoinsider" target="_blank">TokyoInsider</a><span class="tag">Resource</span></li>
+            <li><a href="https://everythingmoe.com/s/animeout" target="_blank">AnimeOut</a><span class="tag">Resource</span></li>
+            <li><a href="https://everythingmoe.com/s/asiamediablog" target="_blank">Asia Media Blog</a><span class="tag">Blog</span></li>
+            <li><a href="https://everythingmoe.com/s/mangazip" target="_blank">MangaZip</a><span class="tag">Download</span></li>
+            <li><a href="https://everythingmoe.com/s/dlraw" target="_blank">DLRaw</a><span class="tag">Download</span></li>
+            <li><a href="https://everythingmoe.com/s/dlrawse" target="_blank">DL-Raw</a><span class="tag">Download</span></li>
+            <li><a href="https://everythingmoe.com/s/animesakura" target="_blank">AnimeToki</a><span class="tag">Download</span></li>
+            <li><a href="https://everythingmoe.com/s/kayoanime" target="_blank">KayoAnime</a><span class="tag">Download</span></li>
+            <li><a href="https://everythingmoe.com/s/pandabackup" target="_blank">Panda Backup</a><span class="tag">Archive</span></li>
+            <li><a href="https://everythingmoe.com/s/karamoe" target="_blank">Karaoke Mugen</a><span class="tag">Karaoke</span></li>
         </ul>
         </div>
     </div>
