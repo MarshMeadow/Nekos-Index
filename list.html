@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neko's Index</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         * {
@@ -11,154 +14,322 @@
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #141416;
+            --bg-tertiary: #1c1c1f;
+            --bg-card: #1f1f23;
+            --bg-card-hover: #27272b;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --accent-primary: #3b82f6;
+            --accent-secondary: #8b5cf6;
+            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            --border-color: #27272a;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #121212;
-            color: #EAEAEA;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
         }
 
         .ip-warning {
-            background: #2A0A3D;
-            color: #FFCDD2;
+            background: linear-gradient(90deg, #1e1b4b 0%, #312e81 100%);
+            color: #e0e7ff;
             text-align: center;
-            padding: 15px;
-            font-size: 14px;
-            border-bottom: 2px solid #6A1B9A;
+            padding: 12px 20px;
+            font-size: 13px;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .ip-warning span {
-            color: #FFEB3B;
-            font-weight: bold;
+            color: #fbbf24;
+            font-weight: 600;
         }
 
         .beta-notice {
-            background: #1F1F1F;
-            color: #FFD54F;
+            background: var(--bg-secondary);
+            color: #fbbf24;
             text-align: center;
-            padding: 12px;
-            font-size: 13px;
-            border-bottom: 1px solid #333;
+            padding: 10px 20px;
+            font-size: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .beta-notice strong {
+            font-weight: 600;
         }
 
         header {
-            background: #4A148C;
-            color: #EAEAEA;
-            padding: 20px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 40px 20px;
             text-align: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        header h1 {
+            margin: 0 0 8px 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        header p {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
         }
 
         .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 20px auto;
-            background: #1E1E1E;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            width: 95%;
+            max-width: 1400px;
+            margin: 40px auto;
+            background: var(--bg-secondary);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
         }
 
         h2 {
             text-align: center;
-            margin-bottom: 30px;
-            color: #BA68C8;
+            margin-bottom: 40px;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
         }
 
         .category {
-            margin: 20px 0;
-            border-bottom: 1px solid #333;
-            padding-bottom: 20px;
+            margin: 40px 0;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .category:last-child {
+            border-bottom: none;
         }
 
         .category h3 {
-            color: #E1BEE7;
-            margin-bottom: 10px;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .category h3::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
         }
 
         ul {
             list-style-type: none;
             padding: 0;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 8px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 12px;
         }
 
         li {
-            padding: 12px;
-            border-radius: 5px;
+            padding: 16px 20px;
+            border-radius: 12px;
             margin: 0;
-            background: #4A148C;
-            transition: background 0.3s;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
         }
 
         li:hover {
-            background: #6A1B9A;
-            cursor: pointer;
+            background: var(--bg-card-hover);
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
         }
 
         a {
             text-decoration: none;
-            color: #EAEAEA;
-            font-weight: bold;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 14px;
+            flex: 1;
+            transition: color 0.2s ease;
         }
 
-        a:hover {
-            color: #FFEB3B;
+        li:hover a {
+            color: var(--accent-primary);
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--accent-gradient);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            color: white;
+            white-space: nowrap;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 8px;
+            margin-left: 8px;
+        }
+
+        .social-link {
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-decoration: none !important;
+            transition: all 0.2s ease;
+        }
+
+        .social-link.discord {
+            background: #5865f2;
+            color: white;
+        }
+
+        .social-link.discord:hover {
+            background: #4752c4;
+        }
+
+        .social-link.telegram {
+            background: #0088cc;
+            color: white;
+        }
+
+        .social-link.telegram:hover {
+            background: #0077b5;
         }
 
         footer {
             text-align: center;
-            padding: 20px;
-            background: #4A148C;
-            color: #EAEAEA;
-            margin-top: 20px;
+            padding: 40px 20px;
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
         }
 
         .other-indexes {
-            margin-top: 10px;
+            margin-top: 20px;
             font-size: 13px;
+        }
+
+        .other-indexes strong {
+            color: var(--text-primary);
+            font-weight: 600;
         }
 
         .other-indexes ul {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 8px;
+            gap: 10px;
+            margin-top: 12px;
         }
 
         .other-indexes li {
-            background: #6A1B9A;
-            padding: 6px 10px;
+            background: var(--bg-card);
+            padding: 8px 16px;
             margin: 0;
-            border-radius: 4px;
+            border-radius: 8px;
             font-size: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .other-indexes a {
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+
+        .other-indexes li:hover a {
+            color: var(--accent-primary);
         }
 
         .dmca {
             font-size: 12px;
-            color: #BDBDBD;
-            margin-top: 15px;
+            color: var(--text-muted);
+            margin-top: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
         }
 
-        .tag {
-            display: inline-block;
-            background: #6A1B9A;
-            padding: 2px 8px;
-            border-radius: 3px;
-            font-size: 11px;
-            margin-left: 8px;
-            color: #FFEB3B;
+        .category p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 16px;
+            line-height: 1.6;
         }
 
         @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 24px;
+                margin: 20px auto;
+            }
+
             ul {
                 grid-template-columns: 1fr;
             }
+
+            li {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .social-links {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg-card-hover);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-primary);
         }
     </style>
 
@@ -218,27 +389,27 @@
     <div class="category">
         <h3>Recommended VPNs & DNS Services</h3>
         <ul>
-            <li><a href="https://adguard.com" target="_blank">AdGuard VPN / DNS <span class="tag">Free Trial</span></a></li>
-            <li><a href="https://protonvpn.com" target="_blank">Proton VPN <span class="tag">Free Tier</span></a></li>
-            <li><a href="https://mullvad.net" target="_blank">Mullvad VPN <span class="tag">Privacy</span></a></li>
-            <li><a href="https://nordvpn.com" target="_blank">NordVPN <span class="tag">Popular</span></a></li>
-            <li><a href="https://www.expressvpn.com" target="_blank">ExpressVPN <span class="tag">Premium</span></a></li>
-            <li><a href="https://surfshark.com" target="_blank">Surfshark <span class="tag">Unlimited</span></a></li>
-            <li><a href="https://www.cyberghostvpn.com" target="_blank">CyberGhost VPN <span class="tag">Streaming</span></a></li>
-            <li><a href="https://www.ivpn.net" target="_blank">IVPN <span class="tag">Privacy</span></a></li>
-            <li><a href="https://privadovpn.com" target="_blank">PrivadoVPN <span class="tag">Free Tier</span></a></li>
-            <li><a href="https://www.cloudflare.com" target="_blank">Cloudflare DNS (1.1.1.1) <span class="tag">Fast</span></a></li>
-            <li><a href="https://adguard.com/en/adguard-dns/overview.html" target="_blank">AdGuard DNS <span class="tag">Blocking</span></a></li>
-            <li><a href="https://quad9.net" target="_blank">Quad9 DNS <span class="tag">Security</span></a></li>
-            <li><a href="https://nextdns.io" target="_blank">NextDNS <span class="tag">Customizable</span></a></li>
-            <li><a href="https://www.opendns.com" target="_blank">OpenDNS <span class="tag">Filtering</span></a></li>
-            <li><a href="https://dns.google" target="_blank">Google Public DNS <span class="tag">Reliable</span></a></li>
-            <li><a href="https://cleanbrowsing.org" target="_blank">CleanBrowsing DNS <span class="tag">Family</span></a></li>
-            <li><a href="https://www.rethinkdns.com" target="_blank">ReThinkDNS <span class="tag">Open Source</span></a></li>
-            <li><a href="https://www.controld.com" target="_blank">Control D <span class="tag">Custom</span></a></li>
-            <li><a href="https://www.zenz-solutions.de/personaldnsfilter-wp" target="_blank">Personal DNS Filter <span class="tag">Mobile</span></a></li>
+            <li><a href="https://adguard.com" target="_blank">AdGuard VPN / DNS</a><span class="tag">Free Trial</span></li>
+            <li><a href="https://protonvpn.com" target="_blank">Proton VPN</a><span class="tag">Free Tier</span></li>
+            <li><a href="https://mullvad.net" target="_blank">Mullvad VPN</a><span class="tag">Privacy</span></li>
+            <li><a href="https://nordvpn.com" target="_blank">NordVPN</a><span class="tag">Popular</span></li>
+            <li><a href="https://www.expressvpn.com" target="_blank">ExpressVPN</a><span class="tag">Premium</span></li>
+            <li><a href="https://surfshark.com" target="_blank">Surfshark</a><span class="tag">Unlimited</span></li>
+            <li><a href="https://www.cyberghostvpn.com" target="_blank">CyberGhost VPN</a><span class="tag">Streaming</span></li>
+            <li><a href="https://www.ivpn.net" target="_blank">IVPN</a><span class="tag">Privacy</span></li>
+            <li><a href="https://privadovpn.com" target="_blank">PrivadoVPN</a><span class="tag">Free Tier</span></li>
+            <li><a href="https://www.cloudflare.com" target="_blank">Cloudflare DNS (1.1.1.1)</a><span class="tag">Fast</span></li>
+            <li><a href="https://adguard.com/en/adguard-dns/overview.html" target="_blank">AdGuard DNS</a><span class="tag">Blocking</span></li>
+            <li><a href="https://quad9.net" target="_blank">Quad9 DNS</a><span class="tag">Security</span></li>
+            <li><a href="https://nextdns.io" target="_blank">NextDNS</a><span class="tag">Customizable</span></li>
+            <li><a href="https://www.opendns.com" target="_blank">OpenDNS</a><span class="tag">Filtering</span></li>
+            <li><a href="https://dns.google" target="_blank">Google Public DNS</a><span class="tag">Reliable</span></li>
+            <li><a href="https://cleanbrowsing.org" target="_blank">CleanBrowsing DNS</a><span class="tag">Family</span></li>
+            <li><a href="https://www.rethinkdns.com" target="_blank">ReThinkDNS</a><span class="tag">Open Source</span></li>
+            <li><a href="https://www.controld.com" target="_blank">Control D</a><span class="tag">Custom</span></li>
+            <li><a href="https://www.zenz-solutions.de/personaldnsfilter-wp" target="_blank">Personal DNS Filter</a><span class="tag">Mobile</span></li>
         </ul>
-        <p style="font-size:13px; color:#BDBDBD;">
+        <p>
             Using a trusted VPN or DNS can help protect your privacy and improve security while browsing streaming services.
         </p>
     </div>
@@ -246,356 +417,356 @@
     <div class="category">
         <h3>Top Streaming Apps For Android</h3>
         <ul>
-            <li><a href="https://github.com/recloudstream/cloudstream" target="_blank">Re-Cloudstream <span class="tag">Open Source</span></a></li>
-            <li><a href="https://www.stremio.com" target="_blank">Stremio <span class="tag">Multi-platform</span></a></li>
-            <li><a href="https://tubitv.com" target="_blank">Tubi <span class="tag">Free</span></a></li>
-            <li><a href="https://www.plex.tv" target="_blank">Plex <span class="tag">Free + Live TV</span></a></li>
-            <li><a href="https://pluto.tv" target="_blank">Pluto TV <span class="tag">Free Live TV</span></a></li>
-            <li><a href="https://play.google.com/store/apps/details?id=com.jio.media.stb.ondemand" target="_blank">JioCinema <span class="tag">Free</span></a></li>
-            <li><a href="https://www.netflix.com" target="_blank">Netflix <span class="tag">Premium</span></a></li>
-            <li><a href="https://www.hulu.com" target="_blank">Hulu <span class="tag">Premium</span></a></li>
-            <li><a href="https://www.hbomax.com" target="_blank">HBO Max <span class="tag">Premium</span></a></li>
-            <li><a href="https://www.peacocktv.com" target="_blank">Peacock TV <span class="tag">Free + Premium</span></a></li>
-            <li><a href="https://www.paramountplus.com" target="_blank">Paramount+ <span class="tag">Premium</span></a></li>
-            <li><a href="https://www.disneyplus.com" target="_blank">Disney+ <span class="tag">Premium</span></a></li>
-            <li><a href="https://www.amazon.com/primevideo" target="_blank">Amazon Prime Video <span class="tag">Premium</span></a></li>
-            <li><a href="https://tv.apple.com" target="_blank">Apple TV+ <span class="tag">Premium</span></a></li>
-            <li><a href="https://www.youtube.com/premium" target="_blank">YouTube Premium <span class="tag">Premium</span></a></li>
-            <li><a href="https://www.google.com/googleplay/ontheweb/TV" target="_blank">Google TV <span class="tag">Aggregator</span></a></li>
-            <li><a href="https://www.fawesome.tv" target="_blank">Fawesome <span class="tag">Free</span></a></li>
-            <li><a href="https://www.sling.com" target="_blank">Sling TV <span class="tag">Live TV</span></a></li>
-            <li><a href="https://www.roku.com" target="_blank">The Roku Channel <span class="tag">Free</span></a></li>
-            <li><a href="https://www.crackle.com" target="_blank">Crackle <span class="tag">Free</span></a></li>
-            <li><a href="https://kodi.tv" target="_blank">Kodi <span class="tag">Open Source</span></a></li>
-            <li><a href="https://jellyfin.org" target="_blank">Jellyfin <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/TeamNewPipe/NewPipe" target="_blank">NewPipe <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/libre-tube/LibreTube" target="_blank">LibreTube <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/you-apps/YouPlay" target="_blank">YouPlay <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/you-apps/SkyTube" target="_blank">SkyTube <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/you-apps/YouPlayer" target="_blank">YouPlayer <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/TeamPiped/Piped" target="_blank">Piped <span class="tag">Privacy</span></a></li>
-            <li><a href="https://github.com/TeamPiped/Piped-Android" target="_blank">Piped Android <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/iv-org/invidious" target="_blank">Invidious <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/Cloudstream-App/Cloudstream" target="_blank">Cloudstream <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/recloudstream/cloudstream-extensions" target="_blank">Cloudstream Extensions <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/SpyCatcherOfficial/StreamHub" target="_blank">StreamHub <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/anthwlock/unlock-netease-cloud-music" target="_blank">Unlock NCM <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/aniyomiorg/aniyomi" target="_blank">Aniyomi <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/mihonapp/mihon" target="_blank">Mihon <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/Suwayomi/Suwayomi" target="_blank">Suwayomi <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/jerry08/Anikin" target="_blank">Anikin <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/astarivi/Kaizoyu" target="_blank">Kaizoyu <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/komikku-app/komikku" target="_blank">Komikku <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/salmanbappi/AniZen" target="_blank">AniZen <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/LNReader/lnreader" target="_blank">LNReader <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/Suwayomi/Suwayomi-Tachiyomi" target="_blank">Suwayomi-Tachiyomi <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/Suwayomi/Suwayomi-J" target="_blank">Suwayomi-J <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/Suwayomi/Suwayomi-Server" target="_blank">Suwayomi-Server <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/az4521/tachiyomiJ2K" target="_blank">TachiyomiJ2K <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/keiyoushi/extensions-source" target="_blank">Keiyoushi Extensions <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/CarlosEsco/Neko" target="_blank">Neko <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/ReDactedX/Xtream-Player" target="_blank">Xtream Player <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/ReDactedX/Xtream-Downloader" target="_blank">Xtream Downloader <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/ReDactedX/Xtream-Extractor" target="_blank">Xtream Extractor <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/ReDactedX/Xtream-Converter" target="_blank">Xtream Converter <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/ReDactedX/Xtream-Manager" target="_blank">Xtream Manager <span class="tag">Open Source</span></a></li>
+            <li><a href="https://github.com/recloudstream/cloudstream" target="_blank">Re-Cloudstream</a><span class="tag">Open Source</span></li>
+            <li><a href="https://www.stremio.com" target="_blank">Stremio</a><span class="tag">Multi-platform</span></li>
+            <li><a href="https://tubitv.com" target="_blank">Tubi</a><span class="tag">Free</span></li>
+            <li><a href="https://www.plex.tv" target="_blank">Plex</a><span class="tag">Free + Live TV</span></li>
+            <li><a href="https://pluto.tv" target="_blank">Pluto TV</a><span class="tag">Free Live TV</span></li>
+            <li><a href="https://play.google.com/store/apps/details?id=com.jio.media.stb.ondemand" target="_blank">JioCinema</a><span class="tag">Free</span></li>
+            <li><a href="https://www.netflix.com" target="_blank">Netflix</a><span class="tag">Premium</span></li>
+            <li><a href="https://www.hulu.com" target="_blank">Hulu</a><span class="tag">Premium</span></li>
+            <li><a href="https://www.hbomax.com" target="_blank">HBO Max</a><span class="tag">Premium</span></li>
+            <li><a href="https://www.peacocktv.com" target="_blank">Peacock TV</a><span class="tag">Free + Premium</span></li>
+            <li><a href="https://www.paramountplus.com" target="_blank">Paramount+</a><span class="tag">Premium</span></li>
+            <li><a href="https://www.disneyplus.com" target="_blank">Disney+</a><span class="tag">Premium</span></li>
+            <li><a href="https://www.amazon.com/primevideo" target="_blank">Amazon Prime Video</a><span class="tag">Premium</span></li>
+            <li><a href="https://tv.apple.com" target="_blank">Apple TV+</a><span class="tag">Premium</span></li>
+            <li><a href="https://www.youtube.com/premium" target="_blank">YouTube Premium</a><span class="tag">Premium</span></li>
+            <li><a href="https://www.google.com/googleplay/ontheweb/TV" target="_blank">Google TV</a><span class="tag">Aggregator</span></li>
+            <li><a href="https://www.fawesome.tv" target="_blank">Fawesome</a><span class="tag">Free</span></li>
+            <li><a href="https://www.sling.com" target="_blank">Sling TV</a><span class="tag">Live TV</span></li>
+            <li><a href="https://www.roku.com" target="_blank">The Roku Channel</a><span class="tag">Free</span></li>
+            <li><a href="https://www.crackle.com" target="_blank">Crackle</a><span class="tag">Free</span></li>
+            <li><a href="https://kodi.tv" target="_blank">Kodi</a><span class="tag">Open Source</span></li>
+            <li><a href="https://jellyfin.org" target="_blank">Jellyfin</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/TeamNewPipe/NewPipe" target="_blank">NewPipe</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/libre-tube/LibreTube" target="_blank">LibreTube</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/you-apps/YouPlay" target="_blank">YouPlay</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/you-apps/SkyTube" target="_blank">SkyTube</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/you-apps/YouPlayer" target="_blank">YouPlayer</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/TeamPiped/Piped" target="_blank">Piped</a><span class="tag">Privacy</span></li>
+            <li><a href="https://github.com/TeamPiped/Piped-Android" target="_blank">Piped Android</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/iv-org/invidious" target="_blank">Invidious</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/Cloudstream-App/Cloudstream" target="_blank">Cloudstream</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/recloudstream/cloudstream-extensions" target="_blank">Cloudstream Extensions</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/SpyCatcherOfficial/StreamHub" target="_blank">StreamHub</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/anthwlock/unlock-netease-cloud-music" target="_blank">Unlock NCM</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/aniyomiorg/aniyomi" target="_blank">Aniyomi</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/mihonapp/mihon" target="_blank">Mihon</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/Suwayomi/Suwayomi" target="_blank">Suwayomi</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/jerry08/Anikin" target="_blank">Anikin</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/astarivi/Kaizoyu" target="_blank">Kaizoyu</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/komikku-app/komikku" target="_blank">Komikku</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/salmanbappi/AniZen" target="_blank">AniZen</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/LNReader/lnreader" target="_blank">LNReader</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/Suwayomi/Suwayomi-Tachiyomi" target="_blank">Suwayomi-Tachiyomi</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/Suwayomi/Suwayomi-J" target="_blank">Suwayomi-J</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/Suwayomi/Suwayomi-Server" target="_blank">Suwayomi-Server</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/az4521/tachiyomiJ2K" target="_blank">TachiyomiJ2K</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/keiyoushi/extensions-source" target="_blank">Keiyoushi Extensions</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/CarlosEsco/Neko" target="_blank">Neko</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/ReDactedX/Xtream-Player" target="_blank">Xtream Player</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/ReDactedX/Xtream-Downloader" target="_blank">Xtream Downloader</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/ReDactedX/Xtream-Extractor" target="_blank">Xtream Extractor</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/ReDactedX/Xtream-Converter" target="_blank">Xtream Converter</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/ReDactedX/Xtream-Manager" target="_blank">Xtream Manager</a><span class="tag">Open Source</span></li>
         </ul>
     </div>
 
     <div class="category">
         <h3>Top Streaming Apps For PC / Web</h3>
         <ul>
-            <li><a href="https://www.stremio.com" target="_blank">Stremio <span class="tag">Desktop</span></a></li>
-            <li><a href="https://www.plex.tv" target="_blank">Plex <span class="tag">Media Server</span></a></li>
-            <li><a href="https://tubitv.com" target="_blank">Tubi <span class="tag">Web</span></a></li>
-            <li><a href="https://pluto.tv" target="_blank">Pluto TV <span class="tag">Web</span></a></li>
-            <li><a href="https://www.netflix.com" target="_blank">Netflix <span class="tag">Web</span></a></li>
-            <li><a href="https://www.hulu.com" target="_blank">Hulu <span class="tag">Web</span></a></li>
-            <li><a href="https://www.hbomax.com" target="_blank">HBO Max <span class="tag">Web</span></a></li>
-            <li><a href="https://www.peacocktv.com" target="_blank">Peacock <span class="tag">Web</span></a></li>
-            <li><a href="https://www.paramountplus.com" target="_blank">Paramount+ <span class="tag">Web</span></a></li>
-            <li><a href="https://www.disneyplus.com" target="_blank">Disney+ <span class="tag">Web</span></a></li>
-            <li><a href="https://www.amazon.com/primevideo" target="_blank">Prime Video <span class="tag">Web</span></a></li>
-            <li><a href="https://tv.apple.com" target="_blank">Apple TV+ <span class="tag">Web</span></a></li>
-            <li><a href="https://www.youtube.com" target="_blank">YouTube <span class="tag">Web</span></a></li>
-            <li><a href="https://www.crackle.com" target="_blank">Crackle <span class="tag">Web</span></a></li>
-            <li><a href="https://www.vudu.com" target="_blank">Vudu <span class="tag">Rentals</span></a></li>
-            <li><a href="https://www.amazon.com/amazonvideo" target="_blank">IMDb TV <span class="tag">Free</span></a></li>
-            <li><a href="https://www.fawesome.tv" target="_blank">Fawesome <span class="tag">Web</span></a></li>
-            <li><a href="https://www.popcornflix.com" target="_blank">Popcornflix <span class="tag">Free</span></a></li>
-            <li><a href="https://www.sonytv.com" target="_blank">Sony Crackle <span class="tag">Free</span></a></li>
-            <li><a href="https://www.redbox.com" target="_blank">Redbox <span class="tag">Rentals</span></a></li>
-            <li><a href="https://github.com/iv-org/invidious" target="_blank">Invidious <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/TeamPiped/Piped" target="_blank">Piped <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/ytdl-org/youtube-dl" target="_blank">youtube-dl <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/yt-dlp/yt-dlp" target="_blank">yt-dlp <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/mpv-player/mpv" target="_blank">mpv <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/jellyfin/jellyfin" target="_blank">Jellyfin <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/emby/emby" target="_blank">Emby <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/xbmc/xbmc" target="_blank">Kodi <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/PlexInc/pms-media-player" target="_blank">Plex <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/stremio/stremio-web" target="_blank">Stremio Web <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/Cloudstream-App/Cloudstream" target="_blank">Cloudstream <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/recloudstream/cloudstream-extensions" target="_blank">Cloudstream Extensions <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/aniyomiorg/aniyomi" target="_blank">Aniyomi <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/mihonapp/mihon" target="_blank">Mihon <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/Suwayomi/Suwayomi" target="_blank">Suwayomi <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/jerry08/Anikin" target="_blank">Anikin <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/astarivi/Kaizoyu" target="_blank">Kaizoyu <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/komikku-app/komikku" target="_blank">Komikku <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/salmanbappi/AniZen" target="_blank">AniZen <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/LNReader/lnreader" target="_blank">LNReader <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/Suwayomi/Suwayomi-Tachiyomi" target="_blank">Suwayomi-Tachiyomi <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/Suwayomi/Suwayomi-J" target="_blank">Suwayomi-J <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/Suwayomi/Suwayomi-Server" target="_blank">Suwayomi-Server <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/az4521/tachiyomiJ2K" target="_blank">TachiyomiJ2K <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/keiyoushi/extensions-source" target="_blank">Keiyoushi Extensions <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/CarlosEsco/Neko" target="_blank">Neko <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/ReDactedX/Xtream-Player" target="_blank">Xtream Player <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/ReDactedX/Xtream-Downloader" target="_blank">Xtream Downloader <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/ReDactedX/Xtream-Extractor" target="_blank">Xtream Extractor <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/ReDactedX/Xtream-Converter" target="_blank">Xtream Converter <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/ReDactedX/Xtream-Manager" target="_blank">Xtream Manager <span class="tag">Open Source</span></a></li>
+            <li><a href="https://www.stremio.com" target="_blank">Stremio</a><span class="tag">Desktop</span></li>
+            <li><a href="https://www.plex.tv" target="_blank">Plex</a><span class="tag">Media Server</span></li>
+            <li><a href="https://tubitv.com" target="_blank">Tubi</a><span class="tag">Web</span></li>
+            <li><a href="https://pluto.tv" target="_blank">Pluto TV</a><span class="tag">Web</span></li>
+            <li><a href="https://www.netflix.com" target="_blank">Netflix</a><span class="tag">Web</span></li>
+            <li><a href="https://www.hulu.com" target="_blank">Hulu</a><span class="tag">Web</span></li>
+            <li><a href="https://www.hbomax.com" target="_blank">HBO Max</a><span class="tag">Web</span></li>
+            <li><a href="https://www.peacocktv.com" target="_blank">Peacock</a><span class="tag">Web</span></li>
+            <li><a href="https://www.paramountplus.com" target="_blank">Paramount+</a><span class="tag">Web</span></li>
+            <li><a href="https://www.disneyplus.com" target="_blank">Disney+</a><span class="tag">Web</span></li>
+            <li><a href="https://www.amazon.com/primevideo" target="_blank">Prime Video</a><span class="tag">Web</span></li>
+            <li><a href="https://tv.apple.com" target="_blank">Apple TV+</a><span class="tag">Web</span></li>
+            <li><a href="https://www.youtube.com" target="_blank">YouTube</a><span class="tag">Web</span></li>
+            <li><a href="https://www.crackle.com" target="_blank">Crackle</a><span class="tag">Web</span></li>
+            <li><a href="https://www.vudu.com" target="_blank">Vudu</a><span class="tag">Rentals</span></li>
+            <li><a href="https://www.amazon.com/amazonvideo" target="_blank">IMDb TV</a><span class="tag">Free</span></li>
+            <li><a href="https://www.fawesome.tv" target="_blank">Fawesome</a><span class="tag">Web</span></li>
+            <li><a href="https://www.popcornflix.com" target="_blank">Popcornflix</a><span class="tag">Free</span></li>
+            <li><a href="https://www.sonytv.com" target="_blank">Sony Crackle</a><span class="tag">Free</span></li>
+            <li><a href="https://www.redbox.com" target="_blank">Redbox</a><span class="tag">Rentals</span></li>
+            <li><a href="https://github.com/iv-org/invidious" target="_blank">Invidious</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/TeamPiped/Piped" target="_blank">Piped</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/ytdl-org/youtube-dl" target="_blank">youtube-dl</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/yt-dlp/yt-dlp" target="_blank">yt-dlp</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/mpv-player/mpv" target="_blank">mpv</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/jellyfin/jellyfin" target="_blank">Jellyfin</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/emby/emby" target="_blank">Emby</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/xbmc/xbmc" target="_blank">Kodi</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/PlexInc/pms-media-player" target="_blank">Plex</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/stremio/stremio-web" target="_blank">Stremio Web</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/Cloudstream-App/Cloudstream" target="_blank">Cloudstream</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/recloudstream/cloudstream-extensions" target="_blank">Cloudstream Extensions</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/aniyomiorg/aniyomi" target="_blank">Aniyomi</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/mihonapp/mihon" target="_blank">Mihon</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/Suwayomi/Suwayomi" target="_blank">Suwayomi</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/jerry08/Anikin" target="_blank">Anikin</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/astarivi/Kaizoyu" target="_blank">Kaizoyu</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/komikku-app/komikku" target="_blank">Komikku</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/salmanbappi/AniZen" target="_blank">AniZen</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/LNReader/lnreader" target="_blank">LNReader</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/Suwayomi/Suwayomi-Tachiyomi" target="_blank">Suwayomi-Tachiyomi</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/Suwayomi/Suwayomi-J" target="_blank">Suwayomi-J</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/Suwayomi/Suwayomi-Server" target="_blank">Suwayomi-Server</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/az4521/tachiyomiJ2K" target="_blank">TachiyomiJ2K</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/keiyoushi/extensions-source" target="_blank">Keiyoushi Extensions</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/CarlosEsco/Neko" target="_blank">Neko</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/ReDactedX/Xtream-Player" target="_blank">Xtream Player</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/ReDactedX/Xtream-Downloader" target="_blank">Xtream Downloader</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/ReDactedX/Xtream-Extractor" target="_blank">Xtream Extractor</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/ReDactedX/Xtream-Converter" target="_blank">Xtream Converter</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/ReDactedX/Xtream-Manager" target="_blank">Xtream Manager</a><span class="tag">Open Source</span></li>
         </ul>
     </div>
 
     <div class="category">
         <h3>Top Anime Apps For Android</h3>
         <ul>
-            <li><a href="https://aniyomi.org" target="_blank">Aniyomi <span class="tag">Open Source</span></a><span class="social-links"><a href="https://discord.gg/F32UjdJZrR" target="_blank" class="social-link discord">Discord</a><a href="https://t.me/iitachiyomi" target="_blank" class="social-link telegram">Telegram</a></span></li>
-            <li><a href="https://github.com/jerry08/Anikin" target="_blank">Anikin <span class="tag">Open Source</span></a><span class="social-links"><a href="https://discord.gg/pAZZfqC5ST" target="_blank" class="social-link discord">Discord</a></span></li>
-            <li><a href="https://github.com/Suwayomi/Suwayomi-Tachiyomi" target="_blank">Suwayomi <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/Suwayomi/Suwayomi-J" target="_blank">Suwayomi-J <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/Suwayomi/Suwayomi-Server" target="_blank">Suwayomi Server <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/astarivi/Kaizoyu" target="_blank">Kaizoyu <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/komikku-app/anikku" target="_blank">Anikku <span class="tag">Open Source</span></a><span class="social-links"><a href="https://discord.gg/85jB7V5AJR" target="_blank" class="social-link discord">Discord</a></span></li>
-            <li><a href="https://github.com/salmanbappi/AniZen" target="_blank">AniZen <span class="tag">Open Source</span></a><span class="social-links"><a href="https://discord.gg/J2wmZqEJnS" target="_blank" class="social-link discord">Discord</a></span></li>
-            <li><a href="https://github.com/ReDactedX/Xtream-Player" target="_blank">Xtream Player <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/ReDactedX/Xtream-Downloader" target="_blank">Xtream Downloader <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/ReDactedX/Xtream-Extractor" target="_blank">Xtream Extractor <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/ReDactedX/Xtream-Converter" target="_blank">Xtream Converter <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/ReDactedX/Xtream-Manager" target="_blank">Xtream Manager <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/aniyomiorg/aniyomi-extensions" target="_blank">Aniyomi Extensions <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/alexpdev/hanime" target="_blank">HAnime <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/axiel7/MoeList" target="_blank">MoeList <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/axiel7/AniHyou-android" target="_blank">AniHyou <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/axiel7/MalDroid" target="_blank">MalDroid <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/TeamNewPipe/NewPipe" target="_blank">NewPipe <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/libre-tube/LibreTube" target="_blank">LibreTube <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/SimpleMobileTools/Simple-Video-Player" target="_blank">Simple Video Player <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/mpv-android/mpv-android" target="_blank">mpv-android <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/videolan/vlc-android" target="_blank">VLC for Android <span class="tag">Open Source</span></a></li>
-            <li><a href="https://anilab.to" target="_blank">Anilab <span class="tag">Free</span></a></li>
-            <li><a href="https://apkpure.com/bibi-anime-watch-stream/com.w2studio.bibianime" target="_blank">Bibi Anime <span class="tag">Free</span></a></li>
-            <li><a href="https://www.crunchyroll.com" target="_blank">Crunchyroll <span class="tag">Premium</span></a></li>
-            <li><a href="https://www.funimation.com" target="_blank">Funimation <span class="tag">Premium</span></a></li>
-            <li><a href="https://www.hidive.com" target="_blank">HIDIVE <span class="tag">Premium</span></a></li>
-            <li><a href="https://www.netflix.com" target="_blank">Netflix <span class="tag">Anime Section</span></a></li>
-            <li><a href="https://www.hulu.com" target="_blank">Hulu <span class="tag">Anime Section</span></a></li>
-            <li><a href="https://www.hbomax.com" target="_blank">HBO Max <span class="tag">Anime Section</span></a></li>
-            <li><a href="https://www.primevideo.com" target="_blank">Prime Video <span class="tag">Anime Section</span></a></li>
-            <li><a href="https://www.disneyplus.com" target="_blank">Disney+ <span class="tag">Anime Section</span></a></li>
-            <li><a href="https://www.youtube.com" target="_blank">YouTube <span class="tag">Free Anime</span></a></li>
-            <li><a href="https://retrocrush.tv" target="_blank">RetroCrush <span class="tag">Classic Anime</span></a></li>
-            <li><a href="https://www.animelab.com" target="_blank">AnimeLab <span class="tag">Regional</span></a></li>
-            <li><a href="https://www.vrv.co" target="_blank">VRV <span class="tag">Bundle</span></a></li>
-            <li><a href="https://www.hidive.com" target="_blank">HIDIVE <span class="tag">Simulcast</span></a></li>
+            <li><a href="https://aniyomi.org" target="_blank">Aniyomi</a><span class="tag">Open Source</span><span class="social-links"><a href="https://discord.gg/F32UjdJZrR" target="_blank" class="social-link discord">Discord</a><a href="https://t.me/iitachiyomi" target="_blank" class="social-link telegram">Telegram</a></span></li>
+            <li><a href="https://github.com/jerry08/Anikin" target="_blank">Anikin</a><span class="tag">Open Source</span><span class="social-links"><a href="https://discord.gg/pAZZfqC5ST" target="_blank" class="social-link discord">Discord</a></span></li>
+            <li><a href="https://github.com/Suwayomi/Suwayomi-Tachiyomi" target="_blank">Suwayomi</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/Suwayomi/Suwayomi-J" target="_blank">Suwayomi-J</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/Suwayomi/Suwayomi-Server" target="_blank">Suwayomi Server</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/astarivi/Kaizoyu" target="_blank">Kaizoyu</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/komikku-app/anikku" target="_blank">Anikku</a><span class="tag">Open Source</span><span class="social-links"><a href="https://discord.gg/85jB7V5AJR" target="_blank" class="social-link discord">Discord</a></span></li>
+            <li><a href="https://github.com/salmanbappi/AniZen" target="_blank">AniZen</a><span class="tag">Open Source</span><span class="social-links"><a href="https://discord.gg/J2wmZqEJnS" target="_blank" class="social-link discord">Discord</a></span></li>
+            <li><a href="https://github.com/ReDactedX/Xtream-Player" target="_blank">Xtream Player</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/ReDactedX/Xtream-Downloader" target="_blank">Xtream Downloader</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/ReDactedX/Xtream-Extractor" target="_blank">Xtream Extractor</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/ReDactedX/Xtream-Converter" target="_blank">Xtream Converter</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/ReDactedX/Xtream-Manager" target="_blank">Xtream Manager</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/aniyomiorg/aniyomi-extensions" target="_blank">Aniyomi Extensions</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/alexpdev/hanime" target="_blank">HAnime</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/axiel7/MoeList" target="_blank">MoeList</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/axiel7/AniHyou-android" target="_blank">AniHyou</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/axiel7/MalDroid" target="_blank">MalDroid</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/TeamNewPipe/NewPipe" target="_blank">NewPipe</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/libre-tube/LibreTube" target="_blank">LibreTube</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/SimpleMobileTools/Simple-Video-Player" target="_blank">Simple Video Player</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/mpv-android/mpv-android" target="_blank">mpv-android</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/videolan/vlc-android" target="_blank">VLC for Android</a><span class="tag">Open Source</span></li>
+            <li><a href="https://anilab.to" target="_blank">Anilab</a><span class="tag">Free</span></li>
+            <li><a href="https://apkpure.com/bibi-anime-watch-stream/com.w2studio.bibianime" target="_blank">Bibi Anime</a><span class="tag">Free</span></li>
+            <li><a href="https://www.crunchyroll.com" target="_blank">Crunchyroll</a><span class="tag">Premium</span></li>
+            <li><a href="https://www.funimation.com" target="_blank">Funimation</a><span class="tag">Premium</span></li>
+            <li><a href="https://www.hidive.com" target="_blank">HIDIVE</a><span class="tag">Premium</span></li>
+            <li><a href="https://www.netflix.com" target="_blank">Netflix</a><span class="tag">Anime Section</span></li>
+            <li><a href="https://www.hulu.com" target="_blank">Hulu</a><span class="tag">Anime Section</span></li>
+            <li><a href="https://www.hbomax.com" target="_blank">HBO Max</a><span class="tag">Anime Section</span></li>
+            <li><a href="https://www.primevideo.com" target="_blank">Prime Video</a><span class="tag">Anime Section</span></li>
+            <li><a href="https://www.disneyplus.com" target="_blank">Disney+</a><span class="tag">Anime Section</span></li>
+            <li><a href="https://www.youtube.com" target="_blank">YouTube</a><span class="tag">Free Anime</span></li>
+            <li><a href="https://retrocrush.tv" target="_blank">RetroCrush</a><span class="tag">Classic Anime</span></li>
+            <li><a href="https://www.animelab.com" target="_blank">AnimeLab</a><span class="tag">Regional</span></li>
+            <li><a href="https://www.vrv.co" target="_blank">VRV</a><span class="tag">Bundle</span></li>
+            <li><a href="https://www.hidive.com" target="_blank">HIDIVE</a><span class="tag">Simulcast</span></li>
         </ul>
     </div>
 
     <div class="category">
         <h3>Top Anime Apps For PC / Web</h3>
         <ul>
-            <li><a href="https://www.crunchyroll.com" target="_blank">Crunchyroll <span class="tag">Web</span></a></li>
-            <li><a href="https://www.funimation.com" target="_blank">Funimation <span class="tag">Web</span></a></li>
-            <li><a href="https://www.hidive.com" target="_blank">HIDIVE <span class="tag">Web</span></a></li>
-            <li><a href="https://retrocrush.tv" target="_blank">RetroCrush <span class="tag">Web</span></a></li>
-            <li><a href="https://www.vrv.co" target="_blank">VRV <span class="tag">Web</span></a></li>
-            <li><a href="https://www.netflix.com" target="_blank">Netflix <span class="tag">Web</span></a></li>
-            <li><a href="https://www.hulu.com" target="_blank">Hulu <span class="tag">Web</span></a></li>
-            <li><a href="https://www.hbomax.com" target="_blank">HBO Max <span class="tag">Web</span></a></li>
-            <li><a href="https://www.primevideo.com" target="_blank">Prime Video <span class="tag">Web</span></a></li>
-            <li><a href="https://www.disneyplus.com" target="_blank">Disney+ <span class="tag">Web</span></a></li>
-            <li><a href="https://www.youtube.com" target="_blank">YouTube <span class="tag">Web</span></a></li>
-            <li><a href="https://www.animelab.com" target="_blank">AnimeLab <span class="tag">Web</span></a></li>
-            <li><a href="https://www.wakanim.tv" target="_blank">Wakanim <span class="tag">Europe</span></a></li>
-            <li><a href="https://www.anime-planet.com" target="_blank">Anime-Planet <span class="tag">Database</span></a></li>
-            <li><a href="https://myanimelist.net" target="_blank">MyAnimeList <span class="tag">Database</span></a></li>
-            <li><a href="https://anilist.co" target="_blank">AniList <span class="tag">Database</span></a></li>
-            <li><a href="https://kitsu.io" target="_blank">Kitsu <span class="tag">Database</span></a></li>
-            <li><a href="https://www.simkl.com" target="_blank">Simkl <span class="tag">Tracker</span></a></li>
-            <li><a href="https://shikimori.one" target="_blank">Shikimori <span class="tag">Database</span></a></li>
-            <li><a href="https://github.com/TeamPiped/Piped" target="_blank">Piped <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/iv-org/invidious" target="_blank">Invidious <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/yt-dlp/yt-dlp" target="_blank">yt-dlp <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/mpv-player/mpv" target="_blank">mpv <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/videolan/vlc" target="_blank">VLC <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/Syncplay/syncplay" target="_blank">Syncplay <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/axiel7/AniHyou" target="_blank">AniHyou <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/axiel7/MoeList" target="_blank">MoeList <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/ThaUnknown/miru" target="_blank">Miru <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/AnilistBeta/Anilist" target="_blank">AniList Desktop <span class="tag">Open Source</span></a></li>
+            <li><a href="https://www.crunchyroll.com" target="_blank">Crunchyroll</a><span class="tag">Web</span></li>
+            <li><a href="https://www.funimation.com" target="_blank">Funimation</a><span class="tag">Web</span></li>
+            <li><a href="https://www.hidive.com" target="_blank">HIDIVE</a><span class="tag">Web</span></li>
+            <li><a href="https://retrocrush.tv" target="_blank">RetroCrush</a><span class="tag">Web</span></li>
+            <li><a href="https://www.vrv.co" target="_blank">VRV</a><span class="tag">Web</span></li>
+            <li><a href="https://www.netflix.com" target="_blank">Netflix</a><span class="tag">Web</span></li>
+            <li><a href="https://www.hulu.com" target="_blank">Hulu</a><span class="tag">Web</span></li>
+            <li><a href="https://www.hbomax.com" target="_blank">HBO Max</a><span class="tag">Web</span></li>
+            <li><a href="https://www.primevideo.com" target="_blank">Prime Video</a><span class="tag">Web</span></li>
+            <li><a href="https://www.disneyplus.com" target="_blank">Disney+</a><span class="tag">Web</span></li>
+            <li><a href="https://www.youtube.com" target="_blank">YouTube</a><span class="tag">Web</span></li>
+            <li><a href="https://www.animelab.com" target="_blank">AnimeLab</a><span class="tag">Web</span></li>
+            <li><a href="https://www.wakanim.tv" target="_blank">Wakanim</a><span class="tag">Europe</span></li>
+            <li><a href="https://www.anime-planet.com" target="_blank">Anime-Planet</a><span class="tag">Database</span></li>
+            <li><a href="https://myanimelist.net" target="_blank">MyAnimeList</a><span class="tag">Database</span></li>
+            <li><a href="https://anilist.co" target="_blank">AniList</a><span class="tag">Database</span></li>
+            <li><a href="https://kitsu.io" target="_blank">Kitsu</a><span class="tag">Database</span></li>
+            <li><a href="https://www.simkl.com" target="_blank">Simkl</a><span class="tag">Tracker</span></li>
+            <li><a href="https://shikimori.one" target="_blank">Shikimori</a><span class="tag">Database</span></li>
+            <li><a href="https://github.com/TeamPiped/Piped" target="_blank">Piped</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/iv-org/invidious" target="_blank">Invidious</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/yt-dlp/yt-dlp" target="_blank">yt-dlp</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/mpv-player/mpv" target="_blank">mpv</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/videolan/vlc" target="_blank">VLC</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/Syncplay/syncplay" target="_blank">Syncplay</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/axiel7/AniHyou" target="_blank">AniHyou</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/axiel7/MoeList" target="_blank">MoeList</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/ThaUnknown/miru" target="_blank">Miru</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/AnilistBeta/Anilist" target="_blank">AniList Desktop</a><span class="tag">Open Source</span></li>
         </ul>
     </div>
 
     <div class="category">
         <h3>Top Reading / Manga Apps For Android</h3>
         <ul>
-            <li><a href="https://github.com/mihonapp/mihon" target="_blank">Mihon <span class="tag">Open Source</span></a><span class="social-links"><a href="https://discord.gg/mihon" target="_blank" class="social-link discord">Discord</a></span></li>
-            <li><a href="https://shosetsu.app" target="_blank">Shosetsu <span class="tag">Open Source</span></a><span class="social-links"><a href="https://discord.gg/6Y8C6fN" target="_blank" class="social-link discord">Discord</a></span></li>
-            <li><a href="https://github.com/LNReader/lnreader" target="_blank">LNReader <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/Suwayomi/Suwayomi-Tachiyomi" target="_blank">Suwayomi <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/Suwayomi/Suwayomi-J" target="_blank">Suwayomi-J <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/Suwayomi/Suwayomi-Server" target="_blank">Suwayomi Server <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/komikku-app/komikku" target="_blank">Komikku <span class="tag">Open Source</span></a><span class="social-links"><a href="https://discord.gg/85jB7V5AJR" target="_blank" class="social-link discord">Discord</a></span></li>
-            <li><a href="https://github.com/CarlosEsco/Neko" target="_blank">Neko <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/az4521/tachiyomiJ2K" target="_blank">TachiyomiJ2K <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/keiyoushi/extensions-source" target="_blank">Keiyoushi Extensions <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/kotatsuapp/Kotatsu" target="_blank">Kotatsu <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/gouravkhunger/paperback" target="_blank">Paperback <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/Myzel394/MangaReader" target="_blank">MangaReader <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/antony/infinity-for-reddit" target="_blank">infinity <span class="tag">Open Source</span></a></li>
-            <li><a href="https://play.google.com/store/apps/details?id=jp.co.shueisha.mangaplus" target="_blank">MANGA Plus <span class="tag">Official</span></a></li>
-            <li><a href="https://play.google.com/store/apps/details?id=com.vizmanga.android" target="_blank">VIZ Manga <span class="tag">Official</span></a></li>
-            <li><a href="https://play.google.com/store/apps/details?id=com.kodansha.kmanga" target="_blank">K MANGA <span class="tag">Official</span></a></li>
-            <li><a href="https://play.google.com/store/apps/details?id=net.manta.comic" target="_blank">Manta <span class="tag">Manhwa</span></a></li>
-            <li><a href="https://play.google.com/store/apps/details?id=com.square_enix.magazine" target="_blank">Manga UP! <span class="tag">Official</span></a></li>
-            <li><a href="https://play.google.com/store/apps/details?id=com.lezhin.comic" target="_blank">Lezhin Comics <span class="tag">Manhwa</span></a></li>
-            <li><a href="https://play.google.com/store/apps/details?id=com.toomics.global" target="_blank">Toomics <span class="tag">Comics</span></a></li>
-            <li><a href="https://www.webnovel.com" target="_blank">WebNovel <span class="tag">Novels</span></a></li>
-            <li><a href="https://www.inkr.com" target="_blank">INKR <span class="tag">Comics</span></a></li>
-            <li><a href="https://www.webtoons.com" target="_blank">WEBTOON <span class="tag">Free</span></a></li>
-            <li><a href="https://www.tappytoon.com" target="_blank">Tappytoon <span class="tag">Manhwa</span></a></li>
-            <li><a href="https://www.mangarock.com" target="_blank">Manga Rock <span class="tag">Discontinued</span></a></li>
-            <li><a href="https://www.crunchyroll.com/comics" target="_blank">Crunchyroll Manga <span class="tag">Premium</span></a></li>
-            <li><a href="https://www.viz.com" target="_blank">VIZ <span class="tag">Web</span></a></li>
-            <li><a href="https://www.shonenjump.com" target="_blank">Shonen Jump <span class="tag">Official</span></a></li>
-            <li><a href="https://www.bookwalker.com" target="_blank">BookWalker <span class="tag">Ebooks</span></a></li>
-            <li><a href="https://www.comixology.com" target="_blank">ComiXology <span class="tag">Comics</span></a></li>
+            <li><a href="https://github.com/mihonapp/mihon" target="_blank">Mihon</a><span class="tag">Open Source</span><span class="social-links"><a href="https://discord.gg/mihon" target="_blank" class="social-link discord">Discord</a></span></li>
+            <li><a href="https://shosetsu.app" target="_blank">Shosetsu</a><span class="tag">Open Source</span><span class="social-links"><a href="https://discord.gg/6Y8C6fN" target="_blank" class="social-link discord">Discord</a></span></li>
+            <li><a href="https://github.com/LNReader/lnreader" target="_blank">LNReader</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/Suwayomi/Suwayomi-Tachiyomi" target="_blank">Suwayomi</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/Suwayomi/Suwayomi-J" target="_blank">Suwayomi-J</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/Suwayomi/Suwayomi-Server" target="_blank">Suwayomi Server</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/komikku-app/komikku" target="_blank">Komikku</a><span class="tag">Open Source</span><span class="social-links"><a href="https://discord.gg/85jB7V5AJR" target="_blank" class="social-link discord">Discord</a></span></li>
+            <li><a href="https://github.com/CarlosEsco/Neko" target="_blank">Neko</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/az4521/tachiyomiJ2K" target="_blank">TachiyomiJ2K</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/keiyoushi/extensions-source" target="_blank">Keiyoushi Extensions</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/kotatsuapp/Kotatsu" target="_blank">Kotatsu</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/gouravkhunger/paperback" target="_blank">Paperback</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/Myzel394/MangaReader" target="_blank">MangaReader</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/antony/infinity-for-reddit" target="_blank">infinity</a><span class="tag">Open Source</span></li>
+            <li><a href="https://play.google.com/store/apps/details?id=jp.co.shueisha.mangaplus" target="_blank">MANGA Plus</a><span class="tag">Official</span></li>
+            <li><a href="https://play.google.com/store/apps/details?id=com.vizmanga.android" target="_blank">VIZ Manga</a><span class="tag">Official</span></li>
+            <li><a href="https://play.google.com/store/apps/details?id=com.kodansha.kmanga" target="_blank">K MANGA</a><span class="tag">Official</span></li>
+            <li><a href="https://play.google.com/store/apps/details?id=net.manta.comic" target="_blank">Manta</a><span class="tag">Manhwa</span></li>
+            <li><a href="https://play.google.com/store/apps/details?id=com.square_enix.magazine" target="_blank">Manga UP!</a><span class="tag">Official</span></li>
+            <li><a href="https://play.google.com/store/apps/details?id=com.lezhin.comic" target="_blank">Lezhin Comics</a><span class="tag">Manhwa</span></li>
+            <li><a href="https://play.google.com/store/apps/details?id=com.toomics.global" target="_blank">Toomics</a><span class="tag">Comics</span></li>
+            <li><a href="https://www.webnovel.com" target="_blank">WebNovel</a><span class="tag">Novels</span></li>
+            <li><a href="https://www.inkr.com" target="_blank">INKR</a><span class="tag">Comics</span></li>
+            <li><a href="https://www.webtoons.com" target="_blank">WEBTOON</a><span class="tag">Free</span></li>
+            <li><a href="https://www.tappytoon.com" target="_blank">Tappytoon</a><span class="tag">Manhwa</span></li>
+            <li><a href="https://www.mangarock.com" target="_blank">Manga Rock</a><span class="tag">Discontinued</span></li>
+            <li><a href="https://www.crunchyroll.com/comics" target="_blank">Crunchyroll Manga</a><span class="tag">Premium</span></li>
+            <li><a href="https://www.viz.com" target="_blank">VIZ</a><span class="tag">Web</span></li>
+            <li><a href="https://www.shonenjump.com" target="_blank">Shonen Jump</a><span class="tag">Official</span></li>
+            <li><a href="https://www.bookwalker.com" target="_blank">BookWalker</a><span class="tag">Ebooks</span></li>
+            <li><a href="https://www.comixology.com" target="_blank">ComiXology</a><span class="tag">Comics</span></li>
         </ul>
     </div>
 
     <div class="category">
         <h3>Top Reading / Manga Apps For PC / Web</h3>
         <ul>
-            <li><a href="https://mangadex.org" target="_blank">MangaDex <span class="tag">Free</span></a></li>
-            <li><a href="https://www.viz.com" target="_blank">VIZ <span class="tag">Official</span></a></li>
-            <li><a href="https://mangaplus.shueisha.co.jp" target="_blank">MANGA Plus <span class="tag">Official</span></a></li>
-            <li><a href="https://www.crunchyroll.com/comics" target="_blank">Crunchyroll Manga <span class="tag">Premium</span></a></li>
-            <li><a href="https://www.shonenjump.com" target="_blank">Shonen Jump <span class="tag">Official</span></a></li>
-            <li><a href="https://www.comixology.com" target="_blank">ComiXology <span class="tag">Amazon</span></a></li>
-            <li><a href="https://www.bookwalker.com" target="_blank">BookWalker <span class="tag">Ebooks</span></a></li>
-            <li><a href="https://www.webtoons.com" target="_blank">WEBTOON <span class="tag">Web</span></a></li>
-            <li><a href="https://www.webnovel.com" target="_blank">WebNovel <span class="tag">Web</span></a></li>
-            <li><a href="https://www.inkr.com" target="_blank">INKR <span class="tag">Web</span></a></li>
-            <li><a href="https://www.tappytoon.com" target="_blank">Tappytoon <span class="tag">Web</span></a></li>
-            <li><a href="https://mangarock.com" target="_blank">Manga Rock <span class="tag">Web</span></a></li>
-            <li><a href="https://www.mangakakalot.com" target="_blank">MangaKakalot <span class="tag">Free</span></a></li>
-            <li><a href="https://www.mangapark.com" target="_blank">MangaPark <span class="tag">Free</span></a></li>
-            <li><a href="https://www.mangareader.to" target="_blank">MangaReader <span class="tag">Free</span></a></li>
-            <li><a href="https://komga.org" target="_blank">Komga <span class="tag">Self-hosted</span></a></li>
-            <li><a href="https://www.kavita.com" target="_blank">Kavita <span class="tag">Self-hosted</span></a></li>
-            <li><a href="https://myanimelist.net" target="_blank">MyAnimeList <span class="tag">Database</span></a></li>
-            <li><a href="https://anilist.co" target="_blank">AniList <span class="tag">Database</span></a></li>
-            <li><a href="https://kitsu.io" target="_blank">Kitsu <span class="tag">Database</span></a></li>
-            <li><a href="https://github.com/Suwayomi/Suwayomi-Server" target="_blank">Suwayomi Server <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/komikku-app/komikku-web" target="_blank">Komikku Web <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/LNReader/lnreader-web" target="_blank">LNReader Web <span class="tag">Open Source</span></a></li>
-            <li><a href="https://github.com/Myzel394/MangaReader" target="_blank">MangaReader Web <span class="tag">Open Source</span></a></li>
+            <li><a href="https://mangadex.org" target="_blank">MangaDex</a><span class="tag">Free</span></li>
+            <li><a href="https://www.viz.com" target="_blank">VIZ</a><span class="tag">Official</span></li>
+            <li><a href="https://mangaplus.shueisha.co.jp" target="_blank">MANGA Plus</a><span class="tag">Official</span></li>
+            <li><a href="https://www.crunchyroll.com/comics" target="_blank">Crunchyroll Manga</a><span class="tag">Premium</span></li>
+            <li><a href="https://www.shonenjump.com" target="_blank">Shonen Jump</a><span class="tag">Official</span></li>
+            <li><a href="https://www.comixology.com" target="_blank">ComiXology</a><span class="tag">Amazon</span></li>
+            <li><a href="https://www.bookwalker.com" target="_blank">BookWalker</a><span class="tag">Ebooks</span></li>
+            <li><a href="https://www.webtoons.com" target="_blank">WEBTOON</a><span class="tag">Web</span></li>
+            <li><a href="https://www.webnovel.com" target="_blank">WebNovel</a><span class="tag">Web</span></li>
+            <li><a href="https://www.inkr.com" target="_blank">INKR</a><span class="tag">Web</span></li>
+            <li><a href="https://www.tappytoon.com" target="_blank">Tappytoon</a><span class="tag">Web</span></li>
+            <li><a href="https://mangarock.com" target="_blank">Manga Rock</a><span class="tag">Web</span></li>
+            <li><a href="https://www.mangakakalot.com" target="_blank">MangaKakalot</a><span class="tag">Free</span></li>
+            <li><a href="https://www.mangapark.com" target="_blank">MangaPark</a><span class="tag">Free</span></li>
+            <li><a href="https://www.mangareader.to" target="_blank">MangaReader</a><span class="tag">Free</span></li>
+            <li><a href="https://komga.org" target="_blank">Komga</a><span class="tag">Self-hosted</span></li>
+            <li><a href="https://www.kavita.com" target="_blank">Kavita</a><span class="tag">Self-hosted</span></li>
+            <li><a href="https://myanimelist.net" target="_blank">MyAnimeList</a><span class="tag">Database</span></li>
+            <li><a href="https://anilist.co" target="_blank">AniList</a><span class="tag">Database</span></li>
+            <li><a href="https://kitsu.io" target="_blank">Kitsu</a><span class="tag">Database</span></li>
+            <li><a href="https://github.com/Suwayomi/Suwayomi-Server" target="_blank">Suwayomi Server</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/komikku-app/komikku-web" target="_blank">Komikku Web</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/LNReader/lnreader-web" target="_blank">LNReader Web</a><span class="tag">Open Source</span></li>
+            <li><a href="https://github.com/Myzel394/MangaReader" target="_blank">MangaReader Web</a><span class="tag">Open Source</span></li>
         </ul>
     </div>
 
     <div class="category">
         <h3>Additional Tools & Utilities</h3>
         <ul>
-            <li><a href="https://www.jdownloader.org" target="_blank">JDownloader <span class="tag">Downloader</span></a></li>
-            <li><a href="https://www.aria2.com" target="_blank">aria2 <span class="tag">Downloader</span></a></li>
-            <li><a href="https://yt-dl.org" target="_blank">youtube-dl <span class="tag">CLI Tool</span></a></li>
-            <li><a href="https://github.com/yt-dlp/yt-dlp" target="_blank">yt-dlp <span class="tag">CLI Tool</span></a></li>
-            <li><a href="https://www.videolan.org/vlc" target="_blank">VLC Media Player <span class="tag">Player</span></a></li>
-            <li><a href="https://mpv.io" target="_blank">mpv <span class="tag">Player</span></a></li>
-            <li><a href="https://www.plex.tv" target="_blank">Plex Media Server <span class="tag">Server</span></a></li>
-            <li><a href="https://jellyfin.org" target="_blank">Jellyfin <span class="tag">Open Source</span></a></li>
-            <li><a href="https://emby.media" target="_blank">Emby <span class="tag">Media Server</span></a></li>
-            <li><a href="https://kodi.tv" target="_blank">Kodi <span class="tag">Media Center</span></a></li>
-            <li><a href="https://www.calibre-ebook.com" target="_blank">Calibre <span class="tag">Ebook Manager</span></a></li>
-            <li><a href="https://www.filebot.net" target="_blank">FileBot <span class="tag">Organizer</span></a></li>
-            <li><a href="https://www.tinymedia-manager.com" target="_blank">tinyMediaManager <span class="tag">Organizer</span></a></li>
-            <li><a href="https://www.sabnzbd.org" target="_blank">SABnzbd <span class="tag">Usenet</span></a></li>
-            <li><a href="https://www.nzbget.net" target="_blank">NZBGet <span class="tag">Usenet</span></a></li>
-            <li><a href="https://www.qbittorrent.org" target="_blank">qBittorrent <span class="tag">Torrent</span></a></li>
-            <li><a href="https://www.transmissionbt.com" target="_blank">Transmission <span class="tag">Torrent</span></a></li>
-            <li><a href="https://deluge-torrent.org" target="_blank">Deluge <span class="tag">Torrent</span></a></li>
-            <li><a href="https://www.ffmpeg.org" target="_blank">FFmpeg <span class="tag">Converter</span></a></li>
-            <li><a href="https://www.handbrake.fr" target="_blank">HandBrake <span class="tag">Converter</span></a></li>
-            <li><a href="https://www.mkvtoolnix.download" target="_blank">MKVToolNix <span class="tag">Editor</span></a></li>
-            <li><a href="https://www.audacityteam.org" target="_blank">Audacity <span class="tag">Audio</span></a></li>
-            <li><a href="https://www.gimp.org" target="_blank">GIMP <span class="tag">Image</span></a></li>
-            <li><a href="https://www.inkscape.org" target="_blank">Inkscape <span class="tag">Vector</span></a></li>
-            <li><a href="https://www.blender.org" target="_blank">Blender <span class="tag">3D</span></a></li>
-            <li><a href="https://www.obsproject.com" target="_blank">OBS Studio <span class="tag">Recording</span></a></li>
-            <li><a href="https://www.shotcut.org" target="_blank">Shotcut <span class="tag">Video</span></a></li>
-            <li><a href="https://www.openshot.org" target="_blank">OpenShot <span class="tag">Video</span></a></li>
-            <li><a href="https://www.kdenlive.org" target="_blank">Kdenlive <span class="tag">Video</span></a></li>
-            <li><a href="https://www.7-zip.org" target="_blank">7-Zip <span class="tag">Archive</span></a></li>
-            <li><a href="https://www.peazip.github.io" target="_blank">PeaZip <span class="tag">Archive</span></a></li>
-            <li><a href="https://www.videolan.org/vlc" target="_blank">VLC <span class="tag">Player</span></a></li>
-            <li><a href="https://www.mpc-hc.org" target="_blank">MPC-HC <span class="tag">Player</span></a></li>
-            <li><a href="https://www.potplayer.daum.net" target="_blank">PotPlayer <span class="tag">Player</span></a></li>
-            <li><a href="https://www.daum.net" target="_blank">Daum PotPlayer <span class="tag">Player</span></a></li>
-            <li><a href="https://www.smplayer.info" target="_blank">SMPlayer <span class="tag">Player</span></a></li>
-            <li><a href="https://www.bomi-player.github.io" target="_blank">Bomi <span class="tag">Player</span></a></li>
-            <li><a href="https://www.utorrent.com" target="_blank">uTorrent <span class="tag">Torrent</span></a></li>
-            <li><a href="https://www.bitcomet.com" target="_blank">BitComet <span class="tag">Torrent</span></a></li>
-            <li><a href="https://www.vuze.com" target="_blank">Vuze <span class="tag">Torrent</span></a></li>
-            <li><a href="https://www.libreoffice.org" target="_blank">LibreOffice <span class="tag">Office</span></a></li>
-            <li><a href="https://www.openoffice.org" target="_blank">Apache OpenOffice <span class="tag">Office</span></a></li>
-            <li><a href="https://www.videolan.org" target="_blank">VLC <span class="tag">Media</span></a></li>
-            <li><a href="https://www.sublimetext.com" target="_blank">Sublime Text <span class="tag">Editor</span></a></li>
-            <li><a href="https://code.visualstudio.com" target="_blank">VS Code <span class="tag">Editor</span></a></li>
-            <li><a href="https://notepad-plus-plus.org" target="_blank">Notepad++ <span class="tag">Editor</span></a></li>
-            <li><a href="https://atom.io" target="_blank">Atom <span class="tag">Editor</span></a></li>
-            <li><a href="https://www.jetbrains.com" target="_blank">JetBrains <span class="tag">IDE</span></a></li>
-            <li><a href="https://www.python.org" target="_blank">Python <span class="tag">Programming</span></a></li>
-            <li><a href="https://nodejs.org" target="_blank">Node.js <span class="tag">Programming</span></a></li>
-            <li><a href="https://git-scm.com" target="_blank">Git <span class="tag">Version Control</span></a></li>
-            <li><a href="https://github.com" target="_blank">GitHub <span class="tag">Hosting</span></a></li>
-            <li><a href="https://gitlab.com" target="_blank">GitLab <span class="tag">Hosting</span></a></li>
-            <li><a href="https://bitbucket.org" target="_blank">Bitbucket <span class="tag">Hosting</span></a></li>
+            <li><a href="https://www.jdownloader.org" target="_blank">JDownloader</a><span class="tag">Downloader</span></li>
+            <li><a href="https://www.aria2.com" target="_blank">aria2</a><span class="tag">Downloader</span></li>
+            <li><a href="https://yt-dl.org" target="_blank">youtube-dl</a><span class="tag">CLI Tool</span></li>
+            <li><a href="https://github.com/yt-dlp/yt-dlp" target="_blank">yt-dlp</a><span class="tag">CLI Tool</span></li>
+            <li><a href="https://www.videolan.org/vlc" target="_blank">VLC Media Player</a><span class="tag">Player</span></li>
+            <li><a href="https://mpv.io" target="_blank">mpv</a><span class="tag">Player</span></li>
+            <li><a href="https://www.plex.tv" target="_blank">Plex Media Server</a><span class="tag">Server</span></li>
+            <li><a href="https://jellyfin.org" target="_blank">Jellyfin</a><span class="tag">Open Source</span></li>
+            <li><a href="https://emby.media" target="_blank">Emby</a><span class="tag">Media Server</span></li>
+            <li><a href="https://kodi.tv" target="_blank">Kodi</a><span class="tag">Media Center</span></li>
+            <li><a href="https://www.calibre-ebook.com" target="_blank">Calibre</a><span class="tag">Ebook Manager</span></li>
+            <li><a href="https://www.filebot.net" target="_blank">FileBot</a><span class="tag">Organizer</span></li>
+            <li><a href="https://www.tinymedia-manager.com" target="_blank">tinyMediaManager</a><span class="tag">Organizer</span></li>
+            <li><a href="https://www.sabnzbd.org" target="_blank">SABnzbd</a><span class="tag">Usenet</span></li>
+            <li><a href="https://www.nzbget.net" target="_blank">NZBGet</a><span class="tag">Usenet</span></li>
+            <li><a href="https://www.qbittorrent.org" target="_blank">qBittorrent</a><span class="tag">Torrent</span></li>
+            <li><a href="https://www.transmissionbt.com" target="_blank">Transmission</a><span class="tag">Torrent</span></li>
+            <li><a href="https://deluge-torrent.org" target="_blank">Deluge</a><span class="tag">Torrent</span></li>
+            <li><a href="https://www.ffmpeg.org" target="_blank">FFmpeg</a><span class="tag">Converter</span></li>
+            <li><a href="https://www.handbrake.fr" target="_blank">HandBrake</a><span class="tag">Converter</span></li>
+            <li><a href="https://www.mkvtoolnix.download" target="_blank">MKVToolNix</a><span class="tag">Editor</span></li>
+            <li><a href="https://www.audacityteam.org" target="_blank">Audacity</a><span class="tag">Audio</span></li>
+            <li><a href="https://www.gimp.org" target="_blank">GIMP</a><span class="tag">Image</span></li>
+            <li><a href="https://www.inkscape.org" target="_blank">Inkscape</a><span class="tag">Vector</span></li>
+            <li><a href="https://www.blender.org" target="_blank">Blender</a><span class="tag">3D</span></li>
+            <li><a href="https://www.obsproject.com" target="_blank">OBS Studio</a><span class="tag">Recording</span></li>
+            <li><a href="https://www.shotcut.org" target="_blank">Shotcut</a><span class="tag">Video</span></li>
+            <li><a href="https://www.openshot.org" target="_blank">OpenShot</a><span class="tag">Video</span></li>
+            <li><a href="https://www.kdenlive.org" target="_blank">Kdenlive</a><span class="tag">Video</span></li>
+            <li><a href="https://www.7-zip.org" target="_blank">7-Zip</a><span class="tag">Archive</span></li>
+            <li><a href="https://www.peazip.github.io" target="_blank">PeaZip</a><span class="tag">Archive</span></li>
+            <li><a href="https://www.videolan.org/vlc" target="_blank">VLC</a><span class="tag">Player</span></li>
+            <li><a href="https://www.mpc-hc.org" target="_blank">MPC-HC</a><span class="tag">Player</span></li>
+            <li><a href="https://www.potplayer.daum.net" target="_blank">PotPlayer</a><span class="tag">Player</span></li>
+            <li><a href="https://www.daum.net" target="_blank">Daum PotPlayer</a><span class="tag">Player</span></li>
+            <li><a href="https://www.smplayer.info" target="_blank">SMPlayer</a><span class="tag">Player</span></li>
+            <li><a href="https://www.bomi-player.github.io" target="_blank">Bomi</a><span class="tag">Player</span></li>
+            <li><a href="https://www.utorrent.com" target="_blank">uTorrent</a><span class="tag">Torrent</span></li>
+            <li><a href="https://www.bitcomet.com" target="_blank">BitComet</a><span class="tag">Torrent</span></li>
+            <li><a href="https://www.vuze.com" target="_blank">Vuze</a><span class="tag">Torrent</span></li>
+            <li><a href="https://www.libreoffice.org" target="_blank">LibreOffice</a><span class="tag">Office</span></li>
+            <li><a href="https://www.openoffice.org" target="_blank">Apache OpenOffice</a><span class="tag">Office</span></li>
+            <li><a href="https://www.videolan.org" target="_blank">VLC</a><span class="tag">Media</span></li>
+            <li><a href="https://www.sublimetext.com" target="_blank">Sublime Text</a><span class="tag">Editor</span></li>
+            <li><a href="https://code.visualstudio.com" target="_blank">VS Code</a><span class="tag">Editor</span></li>
+            <li><a href="https://notepad-plus-plus.org" target="_blank">Notepad++</a><span class="tag">Editor</span></li>
+            <li><a href="https://atom.io" target="_blank">Atom</a><span class="tag">Editor</span></li>
+            <li><a href="https://www.jetbrains.com" target="_blank">JetBrains</a><span class="tag">IDE</span></li>
+            <li><a href="https://www.python.org" target="_blank">Python</a><span class="tag">Programming</span></li>
+            <li><a href="https://nodejs.org" target="_blank">Node.js</a><span class="tag">Programming</span></li>
+            <li><a href="https://git-scm.com" target="_blank">Git</a><span class="tag">Version Control</span></li>
+            <li><a href="https://github.com" target="_blank">GitHub</a><span class="tag">Hosting</span></li>
+            <li><a href="https://gitlab.com" target="_blank">GitLab</a><span class="tag">Hosting</span></li>
+            <li><a href="https://bitbucket.org" target="_blank">Bitbucket</a><span class="tag">Hosting</span></li>
         </ul>
     </div>
 
     <div class="category">
         <h3>Piracy & Download Tools</h3>
         <ul>
-            <li><a href="https://github.com/yt-dlp/yt-dlp" target="_blank">yt-dlp <span class="tag">Downloader</span></a></li>
-            <li><a href="https://github.com/ytdl-org/youtube-dl" target="_blank">youtube-dl <span class="tag">Downloader</span></a></li>
-            <li><a href="https://www.jdownloader.org" target="_blank">JDownloader <span class="tag">Downloader</span></a></li>
-            <li><a href="https://aria2.github.io" target="_blank">aria2 <span class="tag">Downloader</span></a></li>
-            <li><a href="https://github.com/megatools/megatools" target="_blank">MegaTools <span class="tag">Mega</span></a></li>
-            <li><a href="https://github.com/metabrainz/picard" target="_blank">MusicBrainz Picard <span class="tag">Audio</span></a></li>
-            <li><a href="https://kid3.kde.org" target="_blank">Kid3 <span class="tag">Audio</span></a></li>
-            <li><a href="https://easytag.github.io" target="_blank">EasyTag <span class="tag">Audio</span></a></li>
-            <li><a href="https://www.mp3tag.de" target="_blank">Mp3tag <span class="tag">Audio</span></a></li>
-            <li><a href="https://www.qbittorrent.org" target="_blank">qBittorrent <span class="tag">Torrent</span></a></li>
-            <li><a href="https://www.transmissionbt.com" target="_blank">Transmission <span class="tag">Torrent</span></a></li>
-            <li><a href="https://deluge-torrent.org" target="_blank">Deluge <span class="tag">Torrent</span></a></li>
-            <li><a href="https://www.sabnzbd.org" target="_blank">SABnzbd <span class="tag">Usenet</span></a></li>
-            <li><a href="https://www.nzbget.net" target="_blank">NZBGet <span class="tag">Usenet</span></a></li>
-            <li><a href="https://www.ffmpeg.org" target="_blank">FFmpeg <span class="tag">Converter</span></a></li>
-            <li><a href="https://www.handbrake.fr" target="_blank">HandBrake <span class="tag">Converter</span></a></li>
-            <li><a href="https://www.mkvtoolnix.download" target="_blank">MKVToolNix <span class="tag">Editor</span></a></li>
-            <li><a href="https://www.filebot.net" target="_blank">FileBot <span class="tag">Organizer</span></a></li>
-            <li><a href="https://www.tinymedia-manager.com" target="_blank">tinyMediaManager <span class="tag">Organizer</span></a></li>
-            <li><a href="https://www.calibre-ebook.com" target="_blank">Calibre <span class="tag">Ebook Manager</span></a></li>
-            <li><a href="https://github.com/rg3/youtube-dl" target="_blank">youtube-dl <span class="tag">Legacy</span></a></li>
-            <li><a href="https://github.com/yt-dlp/yt-dlp" target="_blank">yt-dlp <span class="tag">Active</span></a></li>
-            <li><a href="https://www.gigaget.com" target="_blank">GigaGet <span class="tag">Downloader</span></a></li>
-            <li><a href="https://www.internetdownloadmanager.com" target="_blank">IDM <span class="tag">Downloader</span></a></li>
-            <li><a href="https://www.freedownloadmanager.org" target="_blank">Free Download Manager <span class="tag">Downloader</span></a></li>
-            <li><a href="https://www.utorrent.com" target="_blank">uTorrent <span class="tag">Torrent</span></a></li>
-            <li><a href="https://www.bitcomet.com" target="_blank">BitComet <span class="tag">Torrent</span></a></li>
-            <li><a href="https://www.vuze.com" target="_blank">Vuze <span class="tag">Torrent</span></a></li>
+            <li><a href="https://github.com/yt-dlp/yt-dlp" target="_blank">yt-dlp</a><span class="tag">Downloader</span></li>
+            <li><a href="https://github.com/ytdl-org/youtube-dl" target="_blank">youtube-dl</a><span class="tag">Downloader</span></li>
+            <li><a href="https://www.jdownloader.org" target="_blank">JDownloader</a><span class="tag">Downloader</span></li>
+            <li><a href="https://aria2.github.io" target="_blank">aria2</a><span class="tag">Downloader</span></li>
+            <li><a href="https://github.com/megatools/megatools" target="_blank">MegaTools</a><span class="tag">Mega</span></li>
+            <li><a href="https://github.com/metabrainz/picard" target="_blank">MusicBrainz Picard</a><span class="tag">Audio</span></li>
+            <li><a href="https://kid3.kde.org" target="_blank">Kid3</a><span class="tag">Audio</span></li>
+            <li><a href="https://easytag.github.io" target="_blank">EasyTag</a><span class="tag">Audio</span></li>
+            <li><a href="https://www.mp3tag.de" target="_blank">Mp3tag</a><span class="tag">Audio</span></li>
+            <li><a href="https://www.qbittorrent.org" target="_blank">qBittorrent</a><span class="tag">Torrent</span></li>
+            <li><a href="https://www.transmissionbt.com" target="_blank">Transmission</a><span class="tag">Torrent</span></li>
+            <li><a href="https://deluge-torrent.org" target="_blank">Deluge</a><span class="tag">Torrent</span></li>
+            <li><a href="https://www.sabnzbd.org" target="_blank">SABnzbd</a><span class="tag">Usenet</span></li>
+            <li><a href="https://www.nzbget.net" target="_blank">NZBGet</a><span class="tag">Usenet</span></li>
+            <li><a href="https://www.ffmpeg.org" target="_blank">FFmpeg</a><span class="tag">Converter</span></li>
+            <li><a href="https://www.handbrake.fr" target="_blank">HandBrake</a><span class="tag">Converter</span></li>
+            <li><a href="https://www.mkvtoolnix.download" target="_blank">MKVToolNix</a><span class="tag">Editor</span></li>
+            <li><a href="https://www.filebot.net" target="_blank">FileBot</a><span class="tag">Organizer</span></li>
+            <li><a href="https://www.tinymedia-manager.com" target="_blank">tinyMediaManager</a><span class="tag">Organizer</span></li>
+            <li><a href="https://www.calibre-ebook.com" target="_blank">Calibre</a><span class="tag">Ebook Manager</span></li>
+            <li><a href="https://github.com/rg3/youtube-dl" target="_blank">youtube-dl</a><span class="tag">Legacy</span></li>
+            <li><a href="https://github.com/yt-dlp/yt-dlp" target="_blank">yt-dlp</a><span class="tag">Active</span></li>
+            <li><a href="https://www.gigaget.com" target="_blank">GigaGet</a><span class="tag">Downloader</span></li>
+            <li><a href="https://www.internetdownloadmanager.com" target="_blank">IDM</a><span class="tag">Downloader</span></li>
+            <li><a href="https://www.freedownloadmanager.org" target="_blank">Free Download Manager</a><span class="tag">Downloader</span></li>
+            <li><a href="https://www.utorrent.com" target="_blank">uTorrent</a><span class="tag">Torrent</span></li>
+            <li><a href="https://www.bitcomet.com" target="_blank">BitComet</a><span class="tag">Torrent</span></li>
+            <li><a href="https://www.vuze.com" target="_blank">Vuze</a><span class="tag">Torrent</span></li>
         </ul>
     </div>
 
@@ -603,9 +774,14 @@
         <h3>Credits</h3>
         <ul>
             <li>
-                Website developed by <strong>Neko 404</strong><br>
-                <a href="https://marshmeadow.netlify.app" target="_blank">Website</a> ·
-                <a href="https://github.com/MarshMeadow" target="_blank">GitHub</a>
+                <div>
+                    <strong>Neko 404</strong><br>
+                    <span style="color: var(--text-secondary); font-size: 13px;">Website Developer</span>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <a href="https://marshmeadow.netlify.app" target="_blank" style="font-size: 12px;">Website</a>
+                    <a href="https://github.com/MarshMeadow" target="_blank" style="font-size: 12px;">GitHub</a>
+                </div>
             </li>
         </ul>
     </div>
