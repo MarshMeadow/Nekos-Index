@@ -1,57 +1,39 @@
 # 🐾 Neko’s Index
 
-**Your ultimate guide for movies, shows, and anime across the web.**  
+A curated directory of websites and apps for discovering anime, manga, and Japanese media—focused on safety, simplicity, and browsing privacy.
 
-Welcome to **Neko’s Index**, a curated directory of websites, applications, and services for streaming, reading, and enjoying Japanese media. We make it easy to discover trusted sources while keeping your browsing safe and private.
+[Live list](https://nekos-index.netlify.app/list)
 
----
+## What’s inside
+- **Curated recommendations** for streaming, reading, and discovery (Android + PC where applicable)
+- **Privacy-first picks** for DNS/VPN tools to reduce ads, trackers, and unwanted profiling
+- **Clear categorization** with a clean dark UI for fast browsing
+- **Ongoing maintenance** to keep sources reviewed and up to date
+- **Beta features** while the project continues to improve
 
-## 🔹 Features
+## Categories
+- Top Streaming Apps (Android & PC)
+- Best Anime Apps (Android)
+- Manga / Reading Apps (Android)
+- And more, organized for quick navigation
 
-- **Curated Lists:** Top apps and websites for Android and PC streaming, anime, and manga.
-- **Privacy First:** Recommendations for VPNs and DNS services like AdGuard, ProtonVPN, Cloudflare, and Personal DNS Filter to keep you safe online.
-- **User-Friendly Design:** Dark theme, clear categories, and a clean layout for easy navigation.
-- **Up-to-Date Info:** Sources are constantly reviewed and updated for accuracy.
-- **Beta Notices:** Early access to features while we continue to improve the index.
+## Why this exists
+Many indexes are either messy, unclear, or focused on hosting content. **Neko’s Index only links to external resources** and is built to help you find what you want with less risk and less effort.
 
----
+## Privacy recommendations (tools)
+These are suggested to improve your browsing experience:
+- AdGuard VPN / DNS: https://adguard.com
+- ProtonVPN: https://protonvpn.com
+- Cloudflare DNS (1.1.1.1): https://www.cloudflare.com
+- Personal DNS Filter: https://www.zenz-solutions.de/personaldnsfilter-wp/
+- NordVPN: https://nordvpn.com
 
-## 📌 Why Neko’s Index?
+## Non-infringement statement
+Neko’s Index **does not host, store, or distribute copyrighted content**.  
+All resources are external and may change over time.
 
-Many indexes exist, but **Neko’s Index focuses on privacy, simplicity, and trust**. We do not host or share copyrighted content and do not facilitate piracy. Everything listed is purely informational.  
+## Notes
+- Some links may be affiliate/partner links that help support the project.
 
-Whether you’re looking for streaming apps, anime readers, or manga platforms, **Neko’s Index saves you time and helps you find what you want safely.**
-
----
-
-## 🛡️ Privacy Recommendations
-
-We care about your privacy. For a safer browsing experience, we suggest:  
-
-- **[AdGuard VPN / DNS](https://adguard.com)** – Blocks ads and trackers.  
-- **[ProtonVPN](https://protonvpn.com)** – Secure, no-log VPN service.  
-- **[Cloudflare DNS (1.1.1.1)](https://www.cloudflare.com)** – Fast and privacy-focused DNS.  
-- **[Personal DNS Filter](https://www.zenz-solutions.de/personaldnsfilter-wp/)** – Customize your own filter for maximum safety.  
-- **[NordVPN](https://nordvpn.com)** – Reliable VPN with global servers.  
-
----
-
-## 📂 Categories
-
-- Top Streaming Apps (Android & PC)  
-- Best Anime Apps (Android)  
-- Recommended Reading / Manga Apps (Android)  
-
-And more, all organized neatly in one place.
-
----
-
-## ⚠️ Disclaimer
-
-Neko’s Index **does not host or distribute copyrighted content**. All listed services are external, and we are not affiliated with them. Some VPN links are affiliate links, which help support the project.  
-
----
-
-## 🌐 Visit the site
-
-Check it out here: [nekos-index.netlify.app/list](https://nekos-index.netlify.app/list)  
+## Disclaimer
+Use tools and services responsibly and in compliance with local laws.
