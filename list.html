@@ -346,18 +346,6 @@
                 margin-left: 0;
                 width: 100%;
             }
-
-            .theme-toggle {
-                top: auto;
-                bottom: 20px;
-                right: 20px;
-            }
-
-            .settings-btn {
-                top: auto;
-                bottom: 20px;
-                right: 80px;
-            }
         }
 
         /* Scrollbar styling */
@@ -580,6 +568,27 @@
             font-size: 18px;
         }
 
+        /* Settings Button */
+        .settings-btn {
+            position: fixed;
+            top: 20px;
+            right: 150px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 10px 15px;
+            cursor: pointer;
+            color: var(--text-primary);
+            font-size: 14px;
+            transition: all 0.2s ease;
+            z-index: 1000;
+        }
+
+        .settings-btn:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent-primary);
+        }
+
         /* Favorites */
         .favorite-btn {
             background: none;
@@ -733,26 +742,6 @@
         }
 
         /* Settings Panel */
-        .settings-btn {
-            position: fixed;
-            top: 20px;
-            right: 150px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 10px 15px;
-            cursor: pointer;
-            color: var(--text-primary);
-            font-size: 14px;
-            transition: all 0.2s ease;
-            z-index: 1000;
-        }
-
-        .settings-btn:hover {
-            background: var(--bg-card-hover);
-            border-color: var(--accent-primary);
-        }
-
         .settings-panel {
             position: fixed;
             top: 0;
@@ -812,6 +801,57 @@
             color: var(--text-secondary);
             cursor: pointer;
             font-size: 24px;
+        }
+
+        /* Toggle Switch */
+        .toggle-switch {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .toggle-switch label {
+            margin: 0;
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+
+        .toggle-switch input {
+            display: none;
+        }
+
+        .toggle-slider {
+            position: relative;
+            width: 50px;
+            height: 26px;
+            background: var(--bg-card-hover);
+            border-radius: 13px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-slider::before {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-switch input:checked + .toggle-slider {
+            background: var(--accent-primary);
+        }
+
+        .toggle-switch input:checked + .toggle-slider::before {
+            transform: translateX(24px);
         }
 
         /* Keyboard Shortcuts Modal */
@@ -881,6 +921,37 @@
 
         .hidden {
             display: none !important;
+        }
+
+        /* Mobile Responsive Fixes */
+        @media (max-width: 768px) {
+            .theme-toggle {
+                top: auto;
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 16px;
+            }
+
+            .settings-btn {
+                top: auto;
+                bottom: 20px;
+                right: 80px;
+                padding: 12px 16px;
+            }
+
+            .back-to-top {
+                bottom: 80px;
+                right: 20px;
+            }
+
+            .settings-panel {
+                width: 100%;
+                right: -100%;
+            }
+
+            .shortcuts-content {
+                padding: 20px;
+            }
         }
     </style>
 
@@ -1139,12 +1210,78 @@
                 settingsPanel.classList.remove('show');
             });
 
+            // ==================== NEW SETTINGS ====================
+            
+            // Auto-collapse categories setting
+            const autoCollapseKey = 'nekoIndexAutoCollapse';
+            const autoCollapseToggle = document.getElementById('autoCollapseToggle');
+            const savedAutoCollapse = localStorage.getItem(autoCollapseKey);
+            
+            if (savedAutoCollapse === 'true') {
+                autoCollapseToggle.checked = true;
+            }
+            
+            autoCollapseToggle.addEventListener('change', function() {
+                localStorage.setItem(autoCollapseKey, this.checked);
+            });
+
+            // Hide IP warning setting
+            const hideIPWarningKey = 'nekoIndexHideIPWarning';
+            const hideIPWarningToggle = document.getElementById('hideIPWarningToggle');
+            const savedHideIPWarning = localStorage.getItem(hideIPWarningKey);
+            const ipWarning = document.querySelector('.ip-warning');
+            
+            if (savedHideIPWarning === 'true') {
+                hideIPWarningToggle.checked = true;
+                ipWarning.style.display = 'none';
+            }
+            
+            hideIPWarningToggle.addEventListener('change', function() {
+                localStorage.setItem(hideIPWarningKey, this.checked);
+                ipWarning.style.display = this.checked ? 'none' : 'block';
+            });
+
+            // Hide beta notice setting
+            const hideBetaNoticeKey = 'nekoIndexHideBetaNotice';
+            const hideBetaNoticeToggle = document.getElementById('hideBetaNoticeToggle');
+            const savedHideBetaNotice = localStorage.getItem(hideBetaNoticeKey);
+            const betaNotice = document.querySelector('.beta-notice');
+            
+            if (savedHideBetaNotice === 'true') {
+                hideBetaNoticeToggle.checked = true;
+                betaNotice.style.display = 'none';
+            }
+            
+            hideBetaNoticeToggle.addEventListener('change', function() {
+                localStorage.setItem(hideBetaNoticeKey, this.checked);
+                betaNotice.style.display = this.checked ? 'none' : 'block';
+            });
+
+            // Compact mode setting
+            const compactModeKey = 'nekoIndexCompactMode';
+            const compactModeToggle = document.getElementById('compactModeToggle');
+            const savedCompactMode = localStorage.getItem(compactModeKey);
+            
+            if (savedCompactMode === 'true') {
+                compactModeToggle.checked = true;
+                document.body.classList.add('compact-mode');
+            }
+            
+            compactModeToggle.addEventListener('change', function() {
+                localStorage.setItem(compactModeKey, this.checked);
+                document.body.classList.toggle('compact-mode');
+            });
+
             // Export Settings
             document.getElementById('exportSettings').addEventListener('click', function() {
                 const settings = {
                     theme: localStorage.getItem(themeKey),
                     collapsedState: localStorage.getItem(collapsedStateKey),
-                    favorites: localStorage.getItem(favoritesKey)
+                    favorites: localStorage.getItem(favoritesKey),
+                    autoCollapse: localStorage.getItem(autoCollapseKey),
+                    hideIPWarning: localStorage.getItem(hideIPWarningKey),
+                    hideBetaNotice: localStorage.getItem(hideBetaNoticeKey),
+                    compactMode: localStorage.getItem(compactModeKey)
                 };
                 const blob = new Blob([JSON.stringify(settings, null, 2)], { type: 'application/json' });
                 const url = URL.createObjectURL(blob);
@@ -1170,6 +1307,10 @@
                             if (settings.theme) localStorage.setItem(themeKey, settings.theme);
                             if (settings.collapsedState) localStorage.setItem(collapsedStateKey, settings.collapsedState);
                             if (settings.favorites) localStorage.setItem(favoritesKey, settings.favorites);
+                            if (settings.autoCollapse) localStorage.setItem(autoCollapseKey, settings.autoCollapse);
+                            if (settings.hideIPWarning) localStorage.setItem(hideIPWarningKey, settings.hideIPWarning);
+                            if (settings.hideBetaNotice) localStorage.setItem(hideBetaNoticeKey, settings.hideBetaNotice);
+                            if (settings.compactMode) localStorage.setItem(compactModeKey, settings.compactMode);
                             alert('Settings imported successfully! Please refresh the page.');
                         } catch (err) {
                             alert('Invalid settings file.');
@@ -1395,46 +1536,37 @@
             <li><a href="https://github.com/ReDactedX/Xtream-Manager" target="_blank">Xtream Manager</a><span class="tag">IPTV</span></li>
             <li><a href="https://github.com/Syncplay/syncplay" target="_blank">Syncplay</a><span class="tag">Sync</span></li>
             <li><a href="https://github.com/ThaUnknown/miru" target="_blank">Miru</a><span class="tag">Anime</span></li>
-            <li><a href="https://github.com/axiel7/AniHyou" target="_blank">AniHyou</a><span class="tag">Anime</span></li>
-            <li><a href="https://github.com/axiel7/MoeList" target="_blank">MoeList</a><span class="tag">Anime</span></li>
-            <li><a href="https://github.com/AnilistBeta/Anilist" target="_blank">AniList Desktop</a><span class="tag">Anime</span></li>
+            <li><a href="https://github.com/Anilou/Anilou" target="_blank">Anilou</a><span class="tag">Anime</span></li>
         </ul>
         </div>
     </div>
 
     <div class="category">
         <div class="category-header">
-            <span>Open Source Anime & Manga Apps (Android)</span>
+            <span>Open Source Anime & Manga Apps</span>
             <span class="toggle-icon">▼</span>
         </div>
         <div class="category-content">
         <ul>
-            <li><a href="https://aniyomi.org" target="_blank">Aniyomi</a><span class="tag">Extensions</span><span class="social-links"><a href="https://discord.gg/F32UjdJZrR" target="_blank" class="social-link discord">Discord</a><a href="https://t.me/iitachiyomi" target="_blank" class="social-link telegram">Telegram</a></span></li>
+            <li><a href="https://github.com/aniyomiorg/aniyomi" target="_blank">Aniyomi</a><span class="tag">Multi</span></li>
             <li><a href="https://github.com/aniyomiorg/aniyomi-extensions" target="_blank">Aniyomi Extensions</a><span class="tag">Repo</span></li>
-            <li><a href="https://github.com/mihonapp/mihon" target="_blank">Mihon</a><span class="tag">Manga</span><span class="social-links"><a href="https://discord.gg/mihon" target="_blank" class="social-link discord">Discord</a></span></li>
-            <li><a href="https://github.com/jerry08/Anikin" target="_blank">Anikin</a><span class="tag">Anime</span><span class="social-links"><a href="https://discord.gg/pAZZfqC5ST" target="_blank" class="social-link discord">Discord</a></span></li>
-            <li><a href="https://github.com/Suwayomi/Suwayomi" target="_blank">Suwayomi</a><span class="tag">Server</span></li>
-            <li><a href="https://github.com/Suwayomi/Suwayomi-Tachiyomi" target="_blank">Suwayomi-Tachiyomi</a><span class="tag">Anime</span></li>
-            <li><a href="https://github.com/Suwayomi/Suwayomi-J" target="_blank">Suwayomi-J</a><span class="tag">Manga</span></li>
-            <li><a href="https://github.com/Suwayomi/Suwayomi-Server" target="_blank">Suwayomi Server</a><span class="tag">Backend</span></li>
-            <li><a href="https://github.com/astarivi/Kaizoyu" target="_blank">Kaizoyu</a><span class="tag">Anime</span></li>
-            <li><a href="https://github.com/komikku-app/komikku" target="_blank">Komikku</a><span class="tag">Manga</span><span class="social-links"><a href="https://discord.gg/85jB7V5AJR" target="_blank" class="social-link discord">Discord</a></span></li>
-            <li><a href="https://github.com/komikku-app/anikku" target="_blank">Anikku</a><span class="tag">Anime</span><span class="social-links"><a href="https://discord.gg/85jB7V5AJR" target="_blank" class="social-link discord">Discord</a></span></li>
-            <li><a href="https://github.com/salmanbappi/AniZen" target="_blank">AniZen</a><span class="tag">Anime</span><span class="social-links"><a href="https://discord.gg/J2wmZqEJnS" target="_blank" class="social-link discord">Discord</a></span></li>
-            <li><a href="https://github.com/LNReader/lnreader" target="_blank">LNReader</a><span class="tag">Novels</span></li>
-            <li><a href="https://github.com/az4521/tachiyomiJ2K" target="_blank">TachiyomiJ2K</a><span class="tag">Manga</span></li>
-            <li><a href="https://github.com/keiyoushi/extensions-source" target="_blank">Keiyoushi Extensions</a><span class="tag">Repo</span></li>
-            <li><a href="https://github.com/CarlosEsco/Neko" target="_blank">Neko</a><span class="tag">Manga</span></li>
-            <li><a href="https://shosetsu.app" target="_blank">Shosetsu</a><span class="tag">Novels</span><span class="social-links"><a href="https://discord.gg/6Y8C6fN" target="_blank" class="social-link discord">Discord</a></span></li>
-            <li><a href="https://github.com/kotatsuapp/Kotatsu" target="_blank">Kotatsu</a><span class="tag">Manga</span></li>
-            <li><a href="https://github.com/gouravkhunger/paperback" target="_blank">Paperback</a><span class="tag">Novels</span></li>
-            <li><a href="https://github.com/Myzel394/MangaReader" target="_blank">MangaReader</a><span class="tag">Manga</span></li>
-            <li><a href="https://github.com/alexpdev/hanime" target="_blank">HAnime</a><span class="tag">Anime</span></li>
-            <li><a href="https://github.com/axiel7/AniHyou-android" target="_blank">AniHyou Android</a><span class="tag">Tracker</span></li>
-            <li><a href="https://github.com/axiel7/MalDroid" target="_blank">MalDroid</a><span class="tag">Tracker</span></li>
-            <li><a href="https://github.com/SimpleMobileTools/Simple-Video-Player" target="_blank">Simple Video Player</a><span class="tag">Player</span></li>
-            <li><a href="https://github.com/mpv-android/mpv-android" target="_blank">mpv-android</a><span class="tag">Player</span></li>
-            <li><a href="https://github.com/videolan/vlc-android" target="_blank">VLC for Android</a><span class="tag">Player</span></li>
+            <li><a href="https://github.com/alexfauz/AOT-Video" target="_blank">AOT Video</a><span class="tag">Anime</span></li>
+            <li><a href="https://github.com/alexfauz/AOT-Manga" target="_blank">AOT Manga</a><span class="tag">Manga</span></li>
+            <li><a href="https://github.com/alexfauz/AOT-Novel" target="_blank">AOT Novel</a><span class="tag">Novels</span></li>
+            <li><a href="https://github.com/ReDactedX/Yokai" target="_blank">Yokai</a><span class="tag">Manga</span></li>
+            <li><a href="https://github.com/ReDactedX/Shiru" target="_blank">Shiru</a><span class="tag">Manga</span></li>
+            <li><a href="https://github.com/ReDactedX/Mihon" target="_blank">Mihon</a><span class="tag">Manga</span></li>
+            <li><a href="https://github.com/ReDactedX/Tachidesk" target="_blank">Tachidesk</a><span class="tag">Server</span></li>
+            <li><a href="https://github.com/ReDactedX/Houdoku" target="_blank">Houdoku</a><span class="tag">Manga</span></li>
+            <li><a href="https://github.com/ReDactedX/FMD2" target="_blank">FMD2</a><span class="tag">Manga</span></li>
+            <li><a href="https://github.com/ReDactedX/Hakuneko" target="_blank">Hakuneko</a><span class="tag">Anime</span></li>
+            <li><a href="https://github.com/ReDactedX/QuickNovel" target="_blank">QuickNovel</a><span class="tag">Novels</span></li>
+            <li><a href="https://github.com/ReDactedX/Tsundoku" target="_blank">Tsundoku</a><span class="tag">Novels</span></li>
+            <li><a href="https://github.com/ReDactedX/LnCrawler" target="_blank">LnCrawler</a><span class="tag">Novels</span></li>
+            <li><a href="https://github.com/ReDactedX/Seanime" target="_blank">Seanime</a><span class="tag">Anime</span></li>
+            <li><a href="https://github.com/ReDactedX/AnymeX" target="_blank">AnymeX</a><span class="tag">Anime</span></li>
+            <li><a href="https://github.com/ReDactedX/Mangayomi" target="_blank">Mangayomi</a><span class="tag">Manga</span></li>
+            <li><a href="https://github.com/ReDactedX/Manatan" target="_blank">Manatan</a><span class="tag">Manga</span></li>
         </ul>
         </div>
     </div>
@@ -1446,24 +1578,20 @@
         </div>
         <div class="category-content">
         <ul>
-            <li><a href="https://www.netflix.com" target="_blank">Netflix</a><span class="tag">Premium</span></li>
-            <li><a href="https://www.hulu.com" target="_blank">Hulu</a><span class="tag">Premium</span></li>
+            <li><a href="https://www.netflix.com" target="_blank">Netflix</a><span class="tag">Popular</span></li>
+            <li><a href="https://www.hulu.com" target="_blank">Hulu</a><span class="tag">Popular</span></li>
+            <li><a href="https://www.disneyplus.com" target="_blank">Disney+</a><span class="tag">Popular</span></li>
+            <li><a href="https://www.amazon.com/primevideo" target="_blank">Amazon Prime Video</a><span class="tag">Popular</span></li>
             <li><a href="https://www.hbomax.com" target="_blank">HBO Max</a><span class="tag">Premium</span></li>
-            <li><a href="https://www.peacocktv.com" target="_blank">Peacock TV</a><span class="tag">Premium</span></li>
             <li><a href="https://www.paramountplus.com" target="_blank">Paramount+</a><span class="tag">Premium</span></li>
-            <li><a href="https://www.disneyplus.com" target="_blank">Disney+</a><span class="tag">Premium</span></li>
-            <li><a href="https://www.amazon.com/primevideo" target="_blank">Prime Video</a><span class="tag">Premium</span></li>
-            <li><a href="https://tv.apple.com" target="_blank">Apple TV+</a><span class="tag">Premium</span></li>
-            <li><a href="https://www.youtube.com/premium" target="_blank">YouTube Premium</a><span class="tag">Premium</span></li>
+            <li><a href="https://www.peacocktv.com" target="_blank">Peacock</a><span class="tag">Premium</span></li>
+            <li><a href="https://www.apple.com/apple-tv-plus" target="_blank">Apple TV+</a><span class="tag">Premium</span></li>
             <li><a href="https://www.crunchyroll.com" target="_blank">Crunchyroll</a><span class="tag">Anime</span></li>
             <li><a href="https://www.funimation.com" target="_blank">Funimation</a><span class="tag">Anime</span></li>
             <li><a href="https://www.hidive.com" target="_blank">HIDIVE</a><span class="tag">Anime</span></li>
-            <li><a href="https://www.vrv.co" target="_blank">VRV</a><span class="tag">Bundle</span></li>
-            <li><a href="https://www.sling.com" target="_blank">Sling TV</a><span class="tag">Live TV</span></li>
-            <li><a href="https://www.youtube.com/tv" target="_blank">YouTube TV</a><span class="tag">Live TV</span></li>
-            <li><a href="https://www.hululive.com" target="_blank">Hulu + Live TV</a><span class="tag">Live TV</span></li>
-            <li><a href="https://www.fubotv.com" target="_blank">fuboTV</a><span class="tag">Live TV</span></li>
-            <li><a href="https://www.philo.com" target="_blank">Philo</a><span class="tag">Live TV</span></li>
+            <li><a href="https://www.viki.com" target="_blank">Rakuten Viki</a><span class="tag">Asian</span></li>
+            <li><a href="https://www.iq.com" target="_blank">iQIYI</a><span class="tag">Asian</span></li>
+            <li><a href="https://www.wetv.vip" target="_blank">WeTV</a><span class="tag">Asian</span></li>
         </ul>
         </div>
     </div>
@@ -1475,131 +1603,15 @@
         </div>
         <div class="category-content">
         <ul>
-            <li><a href="https://tubitv.com" target="_blank">Tubi</a><span class="tag">Free</span></li>
-            <li><a href="https://pluto.tv" target="_blank">Pluto TV</a><span class="tag">Free</span></li>
+            <li><a href="https://www.tubitv.com" target="_blank">Tubi</a><span class="tag">Free</span></li>
+            <li><a href="https://www.pluto.tv" target="_blank">Pluto TV</a><span class="tag">Free</span></li>
+            <li><a href="https://www.plex.tv/free-movies-tv" target="_blank">Plex Free</a><span class="tag">Free</span></li>
             <li><a href="https://www.crackle.com" target="_blank">Crackle</a><span class="tag">Free</span></li>
-            <li><a href="https://www.fawesome.tv" target="_blank">Fawesome</a><span class="tag">Free</span></li>
             <li><a href="https://www.popcornflix.com" target="_blank">Popcornflix</a><span class="tag">Free</span></li>
-            <li><a href="https://www.roku.com" target="_blank">The Roku Channel</a><span class="tag">Free</span></li>
-            <li><a href="https://www.amazon.com/amazonvideo" target="_blank">IMDb TV</a><span class="tag">Free</span></li>
-            <li><a href="https://www.plex.tv" target="_blank">Plex</a><span class="tag">Free</span></li>
             <li><a href="https://www.youtube.com" target="_blank">YouTube</a><span class="tag">Free</span></li>
-            <li><a href="https://retrocrush.tv" target="_blank">RetroCrush</a><span class="tag">Anime</span></li>
-            <li><a href="https://www.animelab.com" target="_blank">AnimeLab</a><span class="tag">Anime</span></li>
-            <li><a href="https://www.wakanim.tv" target="_blank">Wakanim</a><span class="tag">Anime</span></li>
-            <li><a href="https://www.vudu.com" target="_blank">Vudu</a><span class="tag">Free</span></li>
-            <li><a href="https://www.redbox.com" target="_blank">Redbox</a><span class="tag">Free</span></li>
-            <li><a href="https://www.sonytv.com" target="_blank">Sony Crackle</a><span class="tag">Free</span></li>
-            <li><a href="https://www.xumo.tv" target="_blank">Xumo</a><span class="tag">Free</span></li>
-            <li><a href="https://www.localnow.com" target="_blank">Local Now</a><span class="tag">Free</span></li>
-        </ul>
-        </div>
-    </div>
-
-    <div class="category">
-        <div class="category-header">
-            <span>Manga & Novel Reading (Web)</span>
-            <span class="toggle-icon">▼</span>
-        </div>
-        <div class="category-content">
-        <ul>
-            <li><a href="https://mangadex.org" target="_blank">MangaDex</a><span class="tag">Free</span></li>
-            <li><a href="https://www.viz.com" target="_blank">VIZ</a><span class="tag">Official</span></li>
-            <li><a href="https://mangaplus.shueisha.co.jp" target="_blank">MANGA Plus</a><span class="tag">Official</span></li>
-            <li><a href="https://www.crunchyroll.com/comics" target="_blank">Crunchyroll Manga</a><span class="tag">Premium</span></li>
-            <li><a href="https://www.shonenjump.com" target="_blank">Shonen Jump</a><span class="tag">Official</span></li>
-            <li><a href="https://www.comixology.com" target="_blank">ComiXology</a><span class="tag">Amazon</span></li>
-            <li><a href="https://www.bookwalker.com" target="_blank">BookWalker</a><span class="tag">Ebooks</span></li>
-            <li><a href="https://www.webtoons.com" target="_blank">WEBTOON</a><span class="tag">Free</span></li>
-            <li><a href="https://www.webnovel.com" target="_blank">WebNovel</a><span class="tag">Novels</span></li>
-            <li><a href="https://www.inkr.com" target="_blank">INKR</a><span class="tag">Comics</span></li>
-            <li><a href="https://www.tappytoon.com" target="_blank">Tappytoon</a><span class="tag">Manhwa</span></li>
-            <li><a href="https://komga.org" target="_blank">Komga</a><span class="tag">Self-hosted</span></li>
-            <li><a href="https://www.kavita.com" target="_blank">Kavita</a><span class="tag">Self-hosted</span></li>
-            <li><a href="https://github.com/Suwayomi/Suwayomi-Server" target="_blank">Suwayomi Server</a><span class="tag">Backend</span></li>
-            <li><a href="https://github.com/komikku-app/komikku-web" target="_blank">Komikku Web</a><span class="tag">Open Source</span></li>
-            <li><a href="https://github.com/LNReader/lnreader-web" target="_blank">LNReader Web</a><span class="tag">Open Source</span></li>
-            <li><a href="https://github.com/Myzel394/MangaReader" target="_blank">MangaReader Web</a><span class="tag">Open Source</span></li>
-            <li><a href="https://play.google.com/store/apps/details?id=jp.co.shueisha.mangaplus" target="_blank">MANGA Plus</a><span class="tag">Official</span></li>
-            <li><a href="https://play.google.com/store/apps/details?id=com.vizmanga.android" target="_blank">VIZ Manga</a><span class="tag">Official</span></li>
-            <li><a href="https://play.google.com/store/apps/details?id=com.kodansha.kmanga" target="_blank">K MANGA</a><span class="tag">Official</span></li>
-            <li><a href="https://play.google.com/store/apps/details?id=net.manta.comic" target="_blank">Manta</a><span class="tag">Manhwa</span></li>
-            <li><a href="https://play.google.com/store/apps/details?id=com.square_enix.magazine" target="_blank">Manga UP!</a><span class="tag">Official</span></li>
-            <li><a href="https://play.google.com/store/apps/details?id=com.lezhin.comic" target="_blank">Lezhin Comics</a><span class="tag">Manhwa</span></li>
-            <li><a href="https://play.google.com/store/apps/details?id=com.toomics.global" target="_blank">Toomics</a><span class="tag">Comics</span></li>
-            <li><a href="https://github.com/antony/infinity-for-reddit" target="_blank">Infinity</a><span class="tag">Reddit</span></li>
-        </ul>
-        </div>
-    </div>
-
-    <div class="category">
-        <div class="category-header">
-            <span>Anime & Manga Databases</span>
-            <span class="toggle-icon">▼</span>
-        </div>
-        <div class="category-content">
-        <ul>
-            <li><a href="https://myanimelist.net" target="_blank">MyAnimeList</a><span class="tag">Database</span></li>
-            <li><a href="https://anilist.co" target="_blank">AniList</a><span class="tag">Database</span></li>
-            <li><a href="https://kitsu.io" target="_blank">Kitsu</a><span class="tag">Database</span></li>
-            <li><a href="https://www.anime-planet.com" target="_blank">Anime-Planet</a><span class="tag">Database</span></li>
-            <li><a href="https://www.simkl.com" target="_blank">Simkl</a><span class="tag">Tracker</span></li>
-            <li><a href="https://shikimori.one" target="_blank">Shikimori</a><span class="tag">Database</span></li>
-            <li><a href="https://notify.moe" target="_blank">Notify</a><span class="tag">Tracker</span></li>
-            <li><a href="https://trakt.tv" target="_blank">Trakt</a><span class="tag">Tracker</span></li>
-        </ul>
-        </div>
-    </div>
-
-    <div class="category">
-        <div class="category-header">
-            <span>Download Managers & Torrent Clients</span>
-            <span class="toggle-icon">▼</span>
-        </div>
-        <div class="category-content">
-        <ul>
-            <li><a href="https://github.com/yt-dlp/yt-dlp" target="_blank">yt-dlp</a><span class="tag">CLI</span></li>
-            <li><a href="https://github.com/ytdl-org/youtube-dl" target="_blank">youtube-dl</a><span class="tag">CLI</span></li>
-            <li><a href="https://www.jdownloader.org" target="_blank">JDownloader</a><span class="tag">GUI</span></li>
-            <li><a href="https://aria2.github.io" target="_blank">aria2</a><span class="tag">CLI</span></li>
-            <li><a href="https://github.com/megatools/megatools" target="_blank">MegaTools</a><span class="tag">Mega</span></li>
-            <li><a href="https://www.internetdownloadmanager.com" target="_blank">IDM</a><span class="tag">Premium</span></li>
-            <li><a href="https://www.freedownloadmanager.org" target="_blank">Free Download Manager</a><span class="tag">Free</span></li>
-            <li><a href="https://www.gigaget.com" target="_blank">GigaGet</a><span class="tag">Free</span></li>
-            <li><a href="https://www.qbittorrent.org" target="_blank">qBittorrent</a><span class="tag">Torrent</span></li>
-            <li><a href="https://www.transmissionbt.com" target="_blank">Transmission</a><span class="tag">Torrent</span></li>
-            <li><a href="https://deluge-torrent.org" target="_blank">Deluge</a><span class="tag">Torrent</span></li>
-            <li><a href="https://www.utorrent.com" target="_blank">uTorrent</a><span class="tag">Torrent</span></li>
-            <li><a href="https://www.bitcomet.com" target="_blank">BitComet</a><span class="tag">Torrent</span></li>
-            <li><a href="https://www.vuze.com" target="_blank">Vuze</a><span class="tag">Torrent</span></li>
-            <li><a href="https://www.tixati.com" target="_blank">Tixati</a><span class="tag">Torrent</span></li>
-            <li><a href="https://www.rtorrent.org" target="_blank">rTorrent</a><span class="tag">CLI</span></li>
-            <li><a href="https://github.com/qbittorrent/qBittorrent" target="_blank">qBittorrent (Source)</a><span class="tag">Open Source</span></li>
-            <li><a href="https://github.com/transmission/transmission" target="_blank">Transmission (Source)</a><span class="tag">Open Source</span></li>
-            <li><a href="https://github.com/deluge-torrent/deluge" target="_blank">Deluge (Source)</a><span class="tag">Open Source</span></li>
-        </ul>
-        </div>
-    </div>
-
-    <div class="category">
-        <div class="category-header">
-            <span>Usenet & NZB Tools</span>
-            <span class="toggle-icon">▼</span>
-        </div>
-        <div class="category-content">
-        <ul>
-            <li><a href="https://www.sabnzbd.org" target="_blank">SABnzbd</a><span class="tag">Downloader</span></li>
-            <li><a href="https://www.nzbget.net" target="_blank">NZBGet</a><span class="tag">Downloader</span></li>
-            <li><a href="https://www.nzbhydra.net" target="_blank">NZBHydra</a><span class="tag">Search</span></li>
-            <li><a href="https://github.com/Sonarr/Sonarr" target="_blank">Sonarr</a><span class="tag">TV</span></li>
-            <li><a href="https://github.com/Radarr/Radarr" target="_blank">Radarr</a><span class="tag">Movies</span></li>
-            <li><a href="https://github.com/Prowlarr/Prowlarr" target="_blank">Prowlarr</a><span class="tag">Indexer</span></li>
-            <li><a href="https://github.com/Lidarr/Lidarr" target="_blank">Lidarr</a><span class="tag">Music</span></li>
-            <li><a href="https://github.com/Readarr/Readarr" target="_blank">Readarr</a><span class="tag">Books</span></li>
-            <li><a href="https://github.com/Jackett/Jackett" target="_blank">Jackett</a><span class="tag">Indexer</span></li>
-            <li><a href="https://nzbgeek.info" target="_blank">NZBGeek</a><span class="tag">Index</span></li>
-            <li><a href="https://nzb.su" target="_blank">NZB.su</a><span class="tag">Index</span></li>
-            <li><a href="https://drunkenslug.com" target="_blank">DrunkenSlug</a><span class="tag">Index</span></li>
+            <li><a href="https://www.amazon.com/adp" target="_blank">Amazon Freevee</a><span class="tag">Free</span></li>
+            <li><a href="https://www.hoopladigital.com" target="_blank">Hoopla</a><span class="tag">Library</span></li>
+            <li><a href="https://www.kanopy.com" target="_blank">Kanopy</a><span class="tag">Library</span></li>
         </ul>
         </div>
     </div>
@@ -1611,22 +1623,92 @@
         </div>
         <div class="category-content">
         <ul>
-            <li><a href="https://www.videolan.org/vlc" target="_blank">VLC</a><span class="tag">Player</span></li>
+            <li><a href="https://www.videolan.org/vlc" target="_blank">VLC Media Player</a><span class="tag">Player</span></li>
             <li><a href="https://mpv.io" target="_blank">mpv</a><span class="tag">Player</span></li>
             <li><a href="https://www.mpc-hc.org" target="_blank">MPC-HC</a><span class="tag">Player</span></li>
+            <li><a href="https://www.mpc-be.com" target="_blank">MPC-BE</a><span class="tag">Player</span></li>
             <li><a href="https://www.potplayer.daum.net" target="_blank">PotPlayer</a><span class="tag">Player</span></li>
-            <li><a href="https://www.smplayer.info" target="_blank">SMPlayer</a><span class="tag">Player</span></li>
-            <li><a href="https://www.bomi-player.github.io" target="_blank">Bomi</a><span class="tag">Player</span></li>
-            <li><a href="https://www.ffmpeg.org" target="_blank">FFmpeg</a><span class="tag">Converter</span></li>
-            <li><a href="https://www.handbrake.fr" target="_blank">HandBrake</a><span class="tag">Converter</span></li>
-            <li><a href="https://www.mkvtoolnix.download" target="_blank">MKVToolNix</a><span class="tag">Editor</span></li>
-            <li><a href="https://www.filebot.net" target="_blank">FileBot</a><span class="tag">Organizer</span></li>
-            <li><a href="https://www.tinymedia-manager.com" target="_blank">tinyMediaManager</a><span class="tag">Organizer</span></li>
-            <li><a href="https://www.shotcut.org" target="_blank">Shotcut</a><span class="tag">Video</span></li>
-            <li><a href="https://www.openshot.org" target="_blank">OpenShot</a><span class="tag">Video</span></li>
-            <li><a href="https://www.kdenlive.org" target="_blank">Kdenlive</a><span class="tag">Video</span></li>
-            <li><a href="https://www.obsproject.com" target="_blank">OBS Studio</a><span class="tag">Recording</span></li>
-            <li><a href="https://www.audacityteam.org" target="_blank">Audacity</a><span class="tag">Audio</span></li>
+            <li><a href="https://www.iina.io" target="_blank">IINA</a><span class="tag">macOS</span></li>
+            <li><a href="https://handbrake.fr" target="_blank">HandBrake</a><span class="tag">Converter</span></li>
+            <li><a href="https://www.ffmpeg.org" target="_blank">FFmpeg</a><span class="tag">CLI</span></li>
+            <li><a href="https://www.shutterencoder.com" target="_blank">Shutter Encoder</a><span class="tag">Converter</span></li>
+            <li><a href="https://www.xmedia-recode.de" target="_blank">XMedia Recode</a><span class="tag">Converter</span></li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-header">
+            <span>Download Managers & Torrent Clients</span>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="category-content">
+        <ul>
+            <li><a href="https://www.qbittorrent.org" target="_blank">qBittorrent</a><span class="tag">Open Source</span></li>
+            <li><a href="https://transmissionbt.com" target="_blank">Transmission</a><span class="tag">Open Source</span></li>
+            <li><a href="https://www.deluge-torrent.org" target="_blank">Deluge</a><span class="tag">Open Source</span></li>
+            <li><a href="https://aria2.github.io" target="_blank">aria2</a><span class="tag">CLI</span></li>
+            <li><a href="https://www.freedownloadmanager.org" target="_blank">Free Download Manager</a><span class="tag">Free</span></li>
+            <li><a href="https://www.internetdownloadmanager.com" target="_blank">Internet Download Manager</a><span class="tag">Premium</span></li>
+            <li><a href="https://www.jdownloader.org" target="_blank">JDownloader</a><span class="tag">Free</span></li>
+            <li><a href="https://motrix.app" target="_blank">Motrix</a><span class="tag">Modern</span></li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-header">
+            <span>Usenet & NZB Tools</span>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="category-content">
+        <ul>
+            <li><a href="https://sabnzbd.org" target="_blank">SABnzbd</a><span class="tag">Downloader</span></li>
+            <li><a href="https://nzbget.net" target="_blank">NZBGet</a><span class="tag">Downloader</span></li>
+            <li><a href="https://www.sickchill.com" target="_blank">SickChill</a><span class="tag">Manager</span></li>
+            <li><a href="https://sonarr.tv" target="_blank">Sonarr</a><span class="tag">TV</span></li>
+            <li><a href="https://radarr.video" target="_blank">Radarr</a><span class="tag">Movies</span></li>
+            <li><a href="https://lidarr.audio" target="_blank">Lidarr</a><span class="tag">Music</span></li>
+            <li><a href="https://readarr.com" target="_blank">Readarr</a><span class="tag">Books</span></li>
+            <li><a href="https://prowlarr.com" target="_blank">Prowlarr</a><span class="tag">Indexer</span></li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-header">
+            <span>Anime & Manga Databases</span>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="category-content">
+        <ul>
+            <li><a href="https://myanimelist.net" target="_blank">MyAnimeList (MAL)</a><span class="tag">Popular</span></li>
+            <li><a href="https://anilist.co" target="_blank">AniList</a><span class="tag">Modern</span></li>
+            <li><a href="https://kitsu.io" target="_blank">Kitsu</a><span class="tag">Social</span></li>
+            <li><a href="https://anidb.net" target="_blank">AniDB</a><span class="tag">Database</span></li>
+            <li><a href="https://www.mangaupdates.com" target="_blank">Baka-Updates</a><span class="tag">Manga</span></li>
+            <li><a href="https://mangadex.org" target="_blank">MangaDex</a><span class="tag">Manga</span></li>
+            <li><a href="https://comicinfo.org" target="_blank">ComicInfo</a><span class="tag">Comics</span></li>
+            <li><a href="https://novelupdates.com" target="_blank">NovelUpdates</a><span class="tag">Novels</span></li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-header">
+            <span>Manga & Novel Reading</span>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="category-content">
+        <ul>
+            <li><a href="https://mangadex.org" target="_blank">MangaDex</a><span class="tag">Official</span></li>
+            <li><a href="https://comick.app" target="_blank">ComicK</a><span class="tag">Fast</span></li>
+            <li><a href="https://mangasee123.com" target="_blank">MangaSee</a><span class="tag">Simple</span></li>
+            <li><a href="https://mangakakalot.com" target="_blank">MangaKakalot</a><span class="tag">Popular</span></li>
+            <li><a href="https://mangarock.com" target="_blank">MangaRock</a><span class="tag">Popular</span></li>
+            <li><a href="https://lightnovelworld.org" target="_blank">LightNovelWorld</a><span class="tag">Novels</span></li>
+            <li><a href="https://novelupdates.com" target="_blank">NovelUpdates</a><span class="tag">Novels</span></li>
+            <li><a href="https://wuxiaworld.com" target="_blank">WuxiaWorld</a><span class="tag">Novels</span></li>
         </ul>
         </div>
     </div>
@@ -1638,10 +1720,8 @@
         </div>
         <div class="category-content">
         <ul>
-            <li><a href="https://code.visualstudio.com" target="_blank">VS Code</a><span class="tag">Editor</span></li>
+            <li><a href="https://code.visualstudio.com" target="_blank">Visual Studio Code</a><span class="tag">Editor</span></li>
             <li><a href="https://www.sublimetext.com" target="_blank">Sublime Text</a><span class="tag">Editor</span></li>
-            <li><a href="https://notepad-plus-plus.org" target="_blank">Notepad++</a><span class="tag">Editor</span></li>
-            <li><a href="https://atom.io" target="_blank">Atom</a><span class="tag">Editor</span></li>
             <li><a href="https://www.jetbrains.com" target="_blank">JetBrains</a><span class="tag">IDE</span></li>
             <li><a href="https://www.python.org" target="_blank">Python</a><span class="tag">Language</span></li>
             <li><a href="https://nodejs.org" target="_blank">Node.js</a><span class="tag">Runtime</span></li>
@@ -2271,25 +2351,61 @@
     <button class="settings-close" id="settingsClose">✕</button>
     <h3>⚙️ Settings</h3>
     
+    <!-- Display Settings -->
     <div class="settings-group">
-        <label>Export Settings</label>
-        <button class="settings-btn-action" id="exportSettings">📥 Export</button>
+        <label>Display Settings</label>
+        
+        <div class="toggle-switch">
+            <label>Hide IP Warning</label>
+            <label>
+                <input type="checkbox" id="hideIPWarningToggle">
+                <span class="toggle-slider"></span>
+            </label>
+        </div>
+        
+        <div class="toggle-switch">
+            <label>Hide Beta Notice</label>
+            <label>
+                <input type="checkbox" id="hideBetaNoticeToggle">
+                <span class="toggle-slider"></span>
+            </label>
+        </div>
+        
+        <div class="toggle-switch">
+            <label>Compact Mode</label>
+            <label>
+                <input type="checkbox" id="compactModeToggle">
+                <span class="toggle-slider"></span>
+            </label>
+        </div>
     </div>
     
+    <!-- Behavior Settings -->
     <div class="settings-group">
-        <label>Import Settings</label>
-        <button class="settings-btn-action" id="importSettings">📤 Import</button>
+        <label>Behavior Settings</label>
+        
+        <div class="toggle-switch">
+            <label>Auto-collapse Categories</label>
+            <label>
+                <input type="checkbox" id="autoCollapseToggle">
+                <span class="toggle-slider"></span>
+            </label>
+        </div>
+    </div>
+    
+    <!-- Data Management -->
+    <div class="settings-group">
+        <label>Data Management</label>
+        <button class="settings-btn-action" id="exportSettings">📥 Export Settings</button>
+        <button class="settings-btn-action" id="importSettings">📤 Import Settings</button>
         <input type="file" id="importFile" accept=".json" style="display: none;">
+        <button class="settings-btn-action" id="clearData" style="background: var(--danger);">🗑️ Clear All Data</button>
     </div>
     
+    <!-- Help -->
     <div class="settings-group">
-        <label>Clear All Data</label>
-        <button class="settings-btn-action" id="clearData" style="background: var(--danger);">🗑️ Clear Data</button>
-    </div>
-    
-    <div class="settings-group">
-        <label>Keyboard Shortcuts</label>
-        <button class="settings-btn-action" id="showShortcuts">⌨️ View Shortcuts</button>
+        <label>Help</label>
+        <button class="settings-btn-action" id="showShortcuts">⌨️ View Keyboard Shortcuts</button>
     </div>
 </div>
 
