@@ -4,37 +4,39 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>Verifying...</title>
+<title>Neko Index Gate</title>
 
 <style>
     body {
         margin: 0;
         height: 100vh;
         display: flex;
-        align-items: center;
-        justify-content: center;
+        flex-direction: column;
+        justify-content: space-between;
         background: #000;
-        color: #fff;
+        color: #ddd;
         font-family: Arial, sans-serif;
     }
 
-    .box {
-        text-align: center;
-        padding: 20px;
+    .center {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
     }
 
     h1 {
-        font-size: 20px;
+        font-size: 18px;
+        color: #aaa;
         margin-bottom: 10px;
-        color: #9f9f9f;
     }
 
     button {
-        margin-top: 15px;
         padding: 10px 16px;
         border: none;
         border-radius: 8px;
-        background: #1f1f1f;
+        background: #1a1a1a;
         color: white;
         cursor: pointer;
     }
@@ -45,29 +47,69 @@
 
     .small {
         font-size: 12px;
-        color: #666;
+        color: #555;
         margin-top: 10px;
+    }
+
+    footer {
+        font-size: 11px;
+        color: #666;
+        padding: 15px;
+        border-top: 1px solid #111;
+        text-align: center;
+        line-height: 1.5;
+    }
+
+    a {
+        color: #888;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: #fff;
+    }
+
+    .links {
+        margin-bottom: 10px;
     }
 </style>
 </head>
 
 <body>
 
-<div class="box">
+<div class="center">
     <h1 id="status">Checking verification...</h1>
     <div id="action"></div>
 </div>
 
+<footer>
+    <div class="links">
+        🔗 <a href="https://nekos-index.netlify.app/list">Main Site</a> |
+        <a href="https://github.com/MarshMeadow">Developer</a> |
+        <a href="https://github.com/MarshMeadow/Nekos-Index">GitHub Repo</a>
+    </div>
+
+    <strong>Disclaimer & DMCA</strong><br><br>
+
+    Important Legal Notice: Neko's Index is an informational guide only. We do not host, distribute, or facilitate access to copyrighted material.  
+    All links provided are to third-party websites and services over which we have no control.<br><br>
+
+    This website is for educational and informational purposes only. Users are responsible for ensuring their use of any linked services complies with applicable laws in their jurisdiction. We do not endorse piracy or copyright infringement.<br><br>
+
+    DMCA Policy: If you believe your copyrighted work has been posted on a linked website, please contact that website directly. We are not responsible for the content of external sites.<br><br>
+
+    Information may change without notice. Some VPN links may be affiliate referrals.
+</footer>
+
 <script>
-const TARGET_URL = "https://nekos-index.netlify.app/list";
+const TARGET = "https://nekos-index.netlify.app/list";
 const KEY = "nekos_verified";
 
-// If already verified → instant redirect
+// instant redirect if already verified
 if (localStorage.getItem(KEY) === "true") {
-    location.replace(TARGET_URL);
+    location.replace(TARGET);
 }
 
-// Otherwise show verify button
 const status = document.getElementById("status");
 const action = document.getElementById("action");
 
@@ -77,13 +119,12 @@ const btn = document.createElement("button");
 btn.textContent = "Verify & Continue";
 
 btn.onclick = () => {
-    localStorage.setItem(KEY, "true"); // save once
-    status.textContent = "Verified! Redirecting...";
+    localStorage.setItem(KEY, "true");
+    status.textContent = "Verified. Redirecting...";
 
-    // fastest safe redirect
     setTimeout(() => {
-        location.replace(TARGET_URL);
-    }, 150);
+        location.replace(TARGET);
+    }, 120);
 };
 
 action.appendChild(btn);
