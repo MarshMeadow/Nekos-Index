@@ -16,6 +16,7 @@
         background: #000;
         color: #ddd;
         font-family: Arial, sans-serif;
+        user-select: none;
     }
 
     .center {
@@ -24,12 +25,20 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
+        text-align: center;
+        padding: 20px;
     }
 
     h1 {
-        font-size: 18px;
-        color: #aaa;
-        margin-bottom: 10px;
+        font-size: 22px;
+        color: #fff;
+        margin-bottom: 8px;
+    }
+
+    p {
+        color: #888;
+        font-size: 13px;
+        margin-bottom: 20px;
     }
 
     button {
@@ -43,12 +52,6 @@
 
     button:hover {
         background: #2a2a2a;
-    }
-
-    .small {
-        font-size: 12px;
-        color: #555;
-        margin-top: 10px;
     }
 
     footer {
@@ -68,26 +71,25 @@
     a:hover {
         color: #fff;
     }
-
-    .links {
-        margin-bottom: 10px;
-    }
 </style>
 </head>
 
 <body>
 
 <div class="center">
-    <h1 id="status">Checking verification...</h1>
+    <h1>Welcome to Neko's Index</h1>
+    <p id="status">Checking verification...</p>
     <div id="action"></div>
 </div>
 
 <footer>
-    <div class="links">
+    <div>
         🔗 <a href="https://nekos-index.netlify.app/list">Main Site</a> |
         <a href="https://github.com/MarshMeadow">Developer</a> |
         <a href="https://github.com/MarshMeadow/Nekos-Index">GitHub Repo</a>
     </div>
+
+    <br>
 
     <strong>Disclaimer & DMCA</strong><br><br>
 
@@ -98,14 +100,16 @@
 
     DMCA Policy: If you believe your copyrighted work has been posted on a linked website, please contact that website directly. We are not responsible for the content of external sites.<br><br>
 
-    Information may change without notice. Some VPN links may be affiliate referrals.
+    Information may change without notice.
 </footer>
 
 <script>
 const TARGET = "https://nekos-index.netlify.app/list";
 const KEY = "nekos_verified";
 
-// instant redirect if already verified
+/* -------------------------
+   FAST AUTO REDIRECT LOGIC
+--------------------------*/
 if (localStorage.getItem(KEY) === "true") {
     location.replace(TARGET);
 }
@@ -124,10 +128,33 @@ btn.onclick = () => {
 
     setTimeout(() => {
         location.replace(TARGET);
-    }, 120);
+    }, 100);
 };
 
 action.appendChild(btn);
+
+/* -------------------------
+   DISABLE RIGHT CLICK
+--------------------------*/
+document.addEventListener("contextmenu", e => e.preventDefault());
+
+/* -------------------------
+   BLOCK DEVTOOLS SHORTCUTS
+--------------------------*/
+document.addEventListener("keydown", function (e) {
+    // F12
+    if (e.key === "F12") e.preventDefault();
+
+    // Ctrl+Shift+I / J / C
+    if (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) {
+        e.preventDefault();
+    }
+
+    // Ctrl+U (view source)
+    if (e.ctrlKey && e.key === "u") {
+        e.preventDefault();
+    }
+});
 </script>
 
 </body>
